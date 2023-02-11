@@ -1,7 +1,7 @@
 NAME		=	phonebook
 CXX			=	g++
 CPPFLAGS	=	-Wall -Wextra -Werror
-OBJS		=	phonebook.o
+OBJS		=	PhoneBook.o Contact.o
 RM			=	rm -f
 
 all: $(NAME)
