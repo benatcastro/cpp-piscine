@@ -1,6 +1,9 @@
 #include "Zombie.hpp"
 
 int main(void) {
-	newZombie("Heap");
+	Zombie	*zombiePtr;
+
+	zombiePtr = newZombie("Heap");
 	randomChump("Stack");
+	delete zombiePtr;
 }
