@@ -1,8 +1,9 @@
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
 
-#include <string>
-
+# include <string>
+# define ZOMBIECOUNT 3
+# define ZOMBIENAME "Bob"
 class Zombie {
 	public:
 		Zombie(void);
