@@ -1,7 +1,7 @@
 NAME		=	Zombie
 CXX			=	g++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
-OBJS		=	main.o newZombie.o randomChump.o Zombie.cpp
+OBJS		=	main.o newZombie.o randomChump.o Zombie.o
 RM			=	rm -f
 
 all: $(NAME)
