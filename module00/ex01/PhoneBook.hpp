@@ -7,6 +7,9 @@
 # define MAXCONTACTS 8
 # define INVALIDCMD "cmd not found try again with: <ADD> <SEARCH> <EXIT>"
 
+// Validation fncs
+bool	validatePhoneNumber(std::string phoneNumber);
+bool	validateSearchIndex(std::string searchIndex);
 
 class PhoneBook {
 	public:

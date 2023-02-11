@@ -2,14 +2,6 @@
 #include <string>
 #include "PhoneBook.hpp"
 
-bool	validatePhoneNumber(std::string phoneNumber) {
-	for (auto & c : phoneNumber)
-		if (!isdigit(c))
-			return false;
-	return true;
-
-}
-
 void	PhoneBook::addContact(void) {
 	static int	addIndex = 1;
 
@@ -18,28 +10,36 @@ void	PhoneBook::addContact(void) {
 	std::cout << std::endl << "Enter contact first name: ";
 	std::cin >> userInput;
 	this->contactArray[addIndex].setFirstName(userInput);
-	std::cout << "Enter contact last name: ";
+	std::cout << "Enter contact's last name: ";
 	std::cin >> userInput;
 	this->contactArray[addIndex].setLastName(userInput);
-	std::cout << "Enter contact nick name: ";
+	std::cout << "Enter contact's nick name: ";
 	std::cin >> userInput;
 	this->contactArray[addIndex].setPhoneNumber(userInput);
-	std::cout << "Enter contact phone number: ";
+	std::cout << "Enter contact's phone number: ";
 	std::cin >> userInput;
 	while (!validatePhoneNumber(userInput))
 	{
-		std::cout << "Phone number is not valid" << std::endl;
-		std::cout << "Enter contact phone number: ";
+		std::cout << "Phone number is not valid" << std::endl << "Enter contact's phone number: ";
 		std::cin >> userInput;
 	}
 	this->contactArray[addIndex].setNickName(userInput);
-	std::cout << "Enter contact darkest secret: ";
+	std::cout << "Enter contact's darkest secret: ";
 	std::cin >> userInput;
 	this->contactArray[addIndex].setSecret(userInput);
 	addIndex++;
 }
 
 void	PhoneBook::searchContact(void) {
+	std::string	searchIndex;
+
+	std::cout << std::endl << "Enter contact's index: ";
+	std::cin >> searchIndex;
+	while (!validateSearchIndex(searchIndex))
+	{
+		std::cout << "Invalid index" << std::endl << "Enter contacts's index:";
+		std::cin >> searchIndex;
+	}
 }
 
 int main (void) {
