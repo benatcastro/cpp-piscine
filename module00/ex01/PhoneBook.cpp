@@ -31,15 +31,22 @@ void	PhoneBook::addContact(void) {
 }
 
 void	PhoneBook::searchContact(void) {
-	std::string	searchIndex;
+	std::string		userInput;
+	unsigned short	searchIndex;
 
 	std::cout << std::endl << "Enter contact's index: ";
-	std::cin >> searchIndex;
-	while (!validateSearchIndex(searchIndex))
+	std::cin >> userInput;
+	while (!validateSearchIndex(userInput))
 	{
 		std::cout << "Invalid index" << std::endl << "Enter contacts's index:";
-		std::cin >> searchIndex;
+		std::cin >> userInput;
 	}
+	searchIndex = atoi(userInput.c_str());
+	std::cout
+			<< DISPLAYTABLE << std::endl << searchIndex
+			<< std::endl << this->contactArray[searchIndex].getFirstName()
+			<< std::endl << this->contactArray[searchIndex].getLastName()
+			<< std::endl << this->contactArray[searchIndex].getNickName() << std::endl;
 }
 
 int main (void) {
