@@ -19,10 +19,6 @@ class Contact {
 		std::string	getPhoneNumber(void);
 		std::string	getSecret(void);
 	private:
-
-		// Contact Index used for search fnc
-		int			index;
-
 		// Contact Data
 		std::string	firstName;
 		std::string	lastName;

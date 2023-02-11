@@ -3,10 +3,9 @@
 #include "PhoneBook.hpp"
 
 void	PhoneBook::addContact(void) {
-	static int	addIndex = 1;
-
-	addIndex == 8 ? addIndex = 1 : addIndex;
+	static int	addIndex = STARTINDEX;
 	std::string	userInput;
+
 	std::cout << std::endl << "Enter contact first name: ";
 	std::cin >> userInput;
 	this->contactArray[addIndex].setFirstName(userInput);
@@ -35,13 +34,12 @@ void	PhoneBook::searchContact(void) {
 	unsigned short	searchIndex;
 
 	std::cout << std::endl << "Enter contact's index: ";
-	std::cin >> userInput;
-	while (!validateSearchIndex(userInput))
-	{
-		std::cout << "Invalid index" << std::endl << "Enter contacts's index:";
-		std::cin >> userInput;
-	}
-	searchIndex = atoi(userInput.c_str());
+	std::cin >> searchIndex;
+	// while (!validateSearchIndex(userInput))
+	// {
+	// 	std::cout << "Invalid index" << std::endl << "Enter contacts's index:";
+	// 	std::cin >> userInput;
+	// }
 	std::cout
 			<< DISPLAYTABLE << std::endl << searchIndex
 			<< std::endl << this->contactArray[searchIndex].getFirstName()
