@@ -1,25 +1,45 @@
 #include <iostream>
 #include <string>
-#include <map>
 #include "PhoneBook.hpp"
 
+bool	validatePhoneNumber(std::string phoneNumber) {
+	for (auto & c : phoneNumber)
+		if (!isdigit(c))
+			return false;
+	return true;
 
-PhoneBook::PhoneBook(void) {
-	std::cout << "PhoneBook constructor called" << std::endl;
 }
 
-PhoneBook::~PhoneBook(void) {
-	std::cout << "PhoneBook destructor called" << std::endl;
+void	PhoneBook::addContact(void) {
+	static int	addIndex = 1;
+
+	addIndex == 8 ? addIndex = 1 : addIndex;
+	std::string	userInput;
+	std::cout << std::endl << "Enter contact first name: ";
+	std::cin >> userInput;
+	this->contactArray[addIndex].setFirstName(userInput);
+	std::cout << "Enter contact last name: ";
+	std::cin >> userInput;
+	this->contactArray[addIndex].setLastName(userInput);
+	std::cout << "Enter contact nick name: ";
+	std::cin >> userInput;
+	this->contactArray[addIndex].setPhoneNumber(userInput);
+	std::cout << "Enter contact phone number: ";
+	std::cin >> userInput;
+	while (!validatePhoneNumber(userInput))
+	{
+		std::cout << "Phone number is not valid" << std::endl;
+		std::cout << "Enter contact phone number: ";
+		std::cin >> userInput;
+	}
+	this->contactArray[addIndex].setNickName(userInput);
+	std::cout << "Enter contact darkest secret: ";
+	std::cin >> userInput;
+	this->contactArray[addIndex].setSecret(userInput);
+	addIndex++;
 }
 
-void	PhoneBook::addContact(void)
-{
-	std::cout << "add fnc" << std::endl;
-}
-
-void	PhoneBook::searchContact(void)
-{
-	std::cout << "search fnc" << std::endl;
+void	PhoneBook::searchContact(void) {
 }
 
 int main (void) {
@@ -34,8 +54,9 @@ int main (void) {
 			phoneBook.addContact();
 		else if (promptCmd == "SEARCH")
 			phoneBook.searchContact();
-		if (promptCmd == "EXIT")
+		else if (promptCmd == "EXIT")
 			break ;
 	}
+	std::cout << std::endl;
 	return 0;
 }

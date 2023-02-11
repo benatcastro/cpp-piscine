@@ -29,8 +29,6 @@ class Contact {
 		std::string	nickName;
 		std::string	phoneNumber;
 		std::string	secret;
-
-
 };
 
 #endif
