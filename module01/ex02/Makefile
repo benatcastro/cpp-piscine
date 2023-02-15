@@ -1,7 +1,7 @@
-NAME		=	ZombieHorde
+NAME		=	ThisIsBrainz
 CXX			=	g++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
-OBJS		=	main.o HumanA.o HumanB.o Weapon.o
+OBJS		=	main.o
 RM			=	rm -f
 
 all: $(NAME)
@@ -13,7 +13,6 @@ run: all
 	./$(NAME)
 
 re: fclean all
-
 clean:
 	$(RM) $(OBJS)
 
