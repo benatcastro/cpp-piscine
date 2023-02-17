@@ -12,5 +12,6 @@ class Weapon {
 
 	private:
 		std::string type;
+
 };
 #endif
