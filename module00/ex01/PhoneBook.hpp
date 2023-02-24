@@ -5,9 +5,10 @@
 
 # define PROMPT "PhoneBook >"
 # define MAXCONTACTS 8
-# define STARTINDEX 1
-# define INVALIDCMD "cmd not found try again with: <ADD> <SEARCH> <EXIT>"
-# define DISPLAYTABLE "     INDEX|FIRST NAME|LAST  NAME|NICK  NAME|"
+# define STARTINDEX  0
+//# define INVALIDCMD "cmd not found try again with: <ADD> <SEARCH> <EXIT>"
+# define DISPLAYTABLE "INDEX     |FIRST NAME|LAST  NAME|NICK  NAME|"
+
 
 // Validation fncs
 bool	validatePhoneNumber(std::string phoneNumber);

@@ -1,11 +1,14 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include "PhoneBook.hpp"
 
-void	PhoneBook::addContact(void) {
+void	PhoneBook::addContact() {
 	static int	addIndex = STARTINDEX;
 	std::string	userInput;
 
+    if (addIndex > MAXCONTACTS)
+        addIndex = STARTINDEX;
 	std::cout << std::endl << "Enter contact first name: ";
 	std::cin >> userInput;
 	this->contactArray[addIndex].setFirstName(userInput);
@@ -29,27 +32,61 @@ void	PhoneBook::addContact(void) {
 	addIndex++;
 }
 
-void	PhoneBook::searchContact(void) {
-	std::string		userInput;
-	unsigned short	searchIndex;
+void	PhoneBook::searchContact() {
+    std::string userInput;
+    long        searchIndex;
 
 	std::cout << std::endl << "Enter contact's index: ";
-	std::cin >> searchIndex;
-	// while (!validateSearchIndex(userInput))
-	// {
-	// 	std::cout << "Invalid index" << std::endl << "Enter contacts's index:";
-	// 	std::cin >> userInput;
-	// }
-	std::cout
-			<< DISPLAYTABLE << std::endl << searchIndex
-			<< std::endl << this->contactArray[searchIndex].getFirstName()
-			<< std::endl << this->contactArray[searchIndex].getLastName()
-			<< std::endl << this->contactArray[searchIndex].getNickName() << std::endl;
+	std::cin >> userInput;
+    if (!validateSearchIndex(userInput))
+    {
+        std::cerr << "Index must be an integer between 0 - 8" << std::endl;
+        return;
+    }
+    searchIndex = std::strtol(userInput.c_str(), NULL, 10);
+    if (!this->contactArray[searchIndex].getFirstName().length())
+    {
+        std::cout << "Contact number: " << searchIndex << " is not added" << std::endl;
+        return;
+    }
+    // Print contact short desc
+    std::cout << searchIndex << std::endl;
+    if (contactArray[searchIndex].getFirstName().length() >= 10)
+        std::cout << contactArray[searchIndex].getFirstName().replace(9, contactArray[searchIndex].getFirstName().length(), ".") << "|" << std::endl;
+    else
+        std::cout << std::setw(10) << contactArray[searchIndex].getFirstName() << "|" << std::endl;
+    if (contactArray[searchIndex].getLastName().length() >= 10)
+        std::cout << contactArray[searchIndex].getLastName().replace(9, contactArray[searchIndex].getLastName().length(), ".") << "|" << std::endl;
+    else
+        std::cout << std::setw(10) << contactArray[searchIndex].getLastName() << "|" << std::endl;
+    if (contactArray[searchIndex].getNickName().length() >= 10)
+        std::cout << contactArray[searchIndex].getNickName().replace(9, contactArray[searchIndex].getNickName().length(), ".") << "|" << std::endl;
+    // Re prompt for index
+    std::cout << std::endl << "Re enter contact's index: ";
+    std::cin >> userInput;
+    if (!validateSearchIndex(userInput))
+    {
+        std::cerr << "Index must be an integer between 0 - 8" << std::endl;
+        return;
+    }
+    searchIndex = std::strtol(userInput.c_str(), NULL, 10);
+    if (!this->contactArray[searchIndex].getFirstName().length())
+    {
+        std::cout << "Contact number: " << searchIndex << " is not added" << std::endl;
+        return;
+    }
+    // Print full contact's info
+    std::cout << "Contact's info:" << std::endl
+            << "First name: " << contactArray[searchIndex].getFirstName() << std::endl
+            << "Last name: " << contactArray[searchIndex].getLastName() << std::endl
+            << "Nick name: " << contactArray[searchIndex].getNickName() << std::endl
+            << "Phone Number: " << contactArray[searchIndex].getPhoneNumber() << std::endl
+            << "Darkest secret: " << contactArray[searchIndex].getSecret() << std::endl;
 }
 
-int main (void) {
-	std::string	promptCmd;
+int main () {
 	PhoneBook	phoneBook;
+	std::string	promptCmd;
 
 	std::cout << PROMPT;
 	while (std::getline(std::cin, promptCmd))
@@ -60,8 +97,9 @@ int main (void) {
 		else if (promptCmd == "SEARCH")
 			phoneBook.searchContact();
 		else if (promptCmd == "EXIT")
-			break ;
+			break;
 	}
 	std::cout << std::endl;
 	return 0;
 }
+
