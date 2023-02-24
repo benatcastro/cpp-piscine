@@ -23,11 +23,11 @@ public:
 
     typedef Account		t;
 
-    static int	getNbAccounts( void );
-    static int	getTotalAmount( void );
-    static int	getNbDeposits( void );
-    static int	getNbWithdrawals( void );
-    static void	displayAccountsInfos( void );
+    static int	getNbAccounts( void );          //ok
+    static int	getTotalAmount( void );         //ok
+    static int	getNbDeposits( void );          //ok
+    static int	getNbWithdrawals( void );       //ok
+    static void	displayAccountsInfos( void );   //todo
 
     Account( int initial_deposit );
     ~Account( void );

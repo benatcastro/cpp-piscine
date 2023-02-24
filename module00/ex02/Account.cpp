@@ -2,17 +2,35 @@
 #include <iostream>
 #include <ctime>
 
-//setters
+int Account::_nbAccounts = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
+
 int Account::getNbAccounts() {
-    return (this->_nbAccounts);
+    return (_nbAccounts);
 }
 
+int Account::getTotalAmount() {
+    return (_totalAmount);
+}
+
+int Account::getNbDeposits() {
+    return (_totalNbDeposits);
+}
+
+int Account::getNbWithdrawals() {
+    return (_totalNbWithdrawals);
+}
 
 Account::Account(int initial_deposit) {
+
+    //todo timestamp
     std::time_t result = std::time(nullptr);
     std::cout << "[" << result << "]" << " " << "index:"
         << getNbAccounts() << ";" << "amount:" << initial_deposit << ';'
         << "created" << std::endl;
+    _nbAccounts++;
 }
 
 void Account::makeDeposit(int deposit) {
