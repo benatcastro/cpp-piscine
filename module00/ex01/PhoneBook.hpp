@@ -3,9 +3,9 @@
 
 # include "Contact.hpp"
 
-# define PROMPT "PhoneBook >"
-# define MAXCONTACTS 8
-# define STARTINDEX  0
+# define PROMPT ">> "
+# define MAX_CONTACTS 7
+# define START_INDEX  0
 //# define INVALIDCMD "cmd not found try again with: <ADD> <SEARCH> <EXIT>"
 # define DISPLAYTABLE "INDEX     |FIRST NAME|LAST  NAME|NICK  NAME|"
 
