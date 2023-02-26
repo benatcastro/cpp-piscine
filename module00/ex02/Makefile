@@ -1,6 +1,6 @@
 NAME		=	log
 CXX			=	clang++
-CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3 -pedantic
 OBJS		=	Account.o tests.o
 RM			=	rm -f
 

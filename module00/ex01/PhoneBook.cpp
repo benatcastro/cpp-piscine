@@ -7,7 +7,7 @@ void	PhoneBook::addContact() {
 	static int	addIndex = START_INDEX;
 	std::string	userInput;
 
-    if (addIndex >= MAX_CONTACTS)
+    if (addIndex > MAX_CONTACTS)
         addIndex = START_INDEX;
     std::cout << "Enter contact first name: ";
     std::cin >> userInput;
@@ -36,11 +36,11 @@ void	PhoneBook::searchContact() {
     std::string userInput;
     long        searchIndex;
 
-	std::cout << std::endl << "Enter contact's index: ";
+	std::cout << "Enter contact's index: ";
 	std::cin >> userInput;
     if (!validateSearchIndex(userInput))
     {
-        std::cerr << "Index must be an integer between 0 - 8" << std::endl;
+        std::cerr << "Index must be an integer between 0 - 7" << std::endl;
         return;
     }
     searchIndex = std::strtol(userInput.c_str(), NULL, 10);
@@ -50,7 +50,7 @@ void	PhoneBook::searchContact() {
         return;
     }
     // Print contact short desc
-    std::cout << std::setw(10) << searchIndex << std::endl;
+    std::cout << std::setw(10) << searchIndex << "|" << std::endl;
     if (contactArray[searchIndex].getFirstName().length() >= 10)
         std::cout << contactArray[searchIndex].getFirstName().replace(9, contactArray[searchIndex].getFirstName().length(), ".") << "|" << std::endl;
     else
@@ -66,7 +66,7 @@ void	PhoneBook::searchContact() {
     std::cin >> userInput;
     if (!validateSearchIndex(userInput))
     {
-        std::cerr << PROMPT << "Index must be an integer between 0 - 8" << std::endl;
+        std::cerr << PROMPT << "Index must be an integer between 0 - 7" << std::endl;
         return;
     }
     searchIndex = std::strtol(userInput.c_str(), NULL, 10);

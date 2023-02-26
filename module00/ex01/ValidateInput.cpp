@@ -10,6 +10,8 @@ bool	validatePhoneNumber(std::string phoneNumber) {
 bool	validateSearchIndex(std::string searchIndex) {
 	for(std::string::iterator it = searchIndex.begin(); it != searchIndex.end(); it++)
 		if (!isdigit(*it) || *it > '7')
-			return false;
+			return (false);
+        if (std::strtol(searchIndex.c_str(), NULL, 10) > 7)
+            return (false);
 	return true;
 }

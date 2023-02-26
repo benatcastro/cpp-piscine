@@ -1,6 +1,6 @@
 NAME		=	megaphone
-CXX			=	g++
-CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXX			=	clang++
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
 OBJS		=	megaphone.o
 RM			=	rm -f
 

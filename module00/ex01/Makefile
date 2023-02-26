@@ -1,6 +1,6 @@
 NAME		=	phonebook
 CXX			=	clang++
-CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address -g3
 OBJS		=	PhoneBook.o Contact.o ValidateInput.o
 RM			=	rm -f
 
