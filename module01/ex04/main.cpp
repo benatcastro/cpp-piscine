@@ -1,20 +1,17 @@
 #include "SedIsForLosers.hpp"
 
-
 /*
 Replace every occurrence of s1 with s2 in the string s
 */
 static std::string replaceString(std::string haystack, const std::string needle, const std::string replace) {
-
-	std::size_t occurrenceIndex = 0;
-	while (occurrenceIndex < haystack.length())
-	{
-		occurrenceIndex = haystack.find(needle, occurrenceIndex);
-        if (occurrenceIndex == haystack.npos)
-            break ;
-		haystack.erase(occurrenceIndex, needle.length());
-		haystack.insert(occurrenceIndex, replace);
-	}
+    std::size_t occurrenceIndex = 0;
+    while (haystack.find(needle, occurrenceIndex) != std::string::npos)
+    {
+        occurrenceIndex = haystack.find(needle, occurrenceIndex);
+        haystack.erase(occurrenceIndex, needle.length());
+        haystack.insert(occurrenceIndex, replace);
+        occurrenceIndex += replace.length();
+    }
     return (haystack);
 }
 
@@ -39,6 +36,10 @@ int main(int argc, char **argv) {
 	const std::string	s1(argv[S1_INDEX]);
 	const std::string	s2(argv[S2_INDEX]);
 	inFileBuffer << inFile.rdbuf();
+    if (!inFileBuffer) {
+        std::cout << argv[FILE_INDEX] << " " << "is empty" << std::endl;
+        return  (EXIT_FAILURE);
+    }
 	inFile.close();
     std::ofstream outFile(strcat(argv[FILE_INDEX],".replace"));
     outFile << replaceString(inFileBuffer.str(), s1, s2);
