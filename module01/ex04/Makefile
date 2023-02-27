@@ -1,6 +1,6 @@
 NAME		=	SedIsForLosers
-CXX			=	g++
-CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXX			=	c++
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 OBJS		=	main.o
 RM			=	rm -f
 

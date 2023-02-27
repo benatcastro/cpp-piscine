@@ -4,44 +4,42 @@
 /*
 Replace every occurrence of s1 with s2 in the string s
 */
-static void replaceString(std::string haystack, const std::string needle, const std::string replace) {
+static std::string replaceString(std::string haystack, const std::string needle, const std::string replace) {
 
 	std::size_t occurrenceIndex = 0;
-	while (occurrenceIndex != haystack.npos)
+	while (occurrenceIndex < haystack.length())
 	{
 		occurrenceIndex = haystack.find(needle, occurrenceIndex);
+        if (occurrenceIndex == haystack.npos)
+            break ;
 		haystack.erase(occurrenceIndex, needle.length());
 		haystack.insert(occurrenceIndex, replace);
-		occurrenceIndex = haystack.find(needle, occurrenceIndex);
 	}
+    return (haystack);
 }
 
 int main(int argc, char **argv) {
 	std::ifstream	inFile;
 
-	// Init
-
-	if (argc != MIN_ARGS)
-	{
+	if (argc != MIN_ARGS) {
 		std::cout << HELPER_MSG << std::endl;
-		return 0;
+		return (EXIT_FAILURE);
 	}
 	inFile.open(argv[FILE_INDEX]);
-	if (!inFile.is_open())
-	{
+	if (!inFile.is_open()) {
 		std::cerr << ERR_OPEN_MSG << argv[FILE_INDEX] << std::endl;
-		return (0);
+		return (EXIT_FAILURE);
 	}
-
+    if (!argv[S1_INDEX] || !argv[S2_INDEX]) {
+        std::cerr << ERR_NO_INPUT << std::endl;
+        return (EXIT_FAILURE);
+    }
 	std::stringstream	inFileBuffer;
 
 	const std::string	s1(argv[S1_INDEX]);
 	const std::string	s2(argv[S2_INDEX]);
 	inFileBuffer << inFile.rdbuf();
 	inFile.close();
-
-	// Replace logic
-	replaceString(inFileBuffer.str(), s1, s2);
-
-
+    std::ofstream outFile(strcat(argv[FILE_INDEX],".replace"));
+    outFile << replaceString(inFileBuffer.str(), s1, s2);
 }

@@ -6,7 +6,8 @@
 # include <sstream>
 
 # define HELPER_MSG "Sed is for losers accepts 3 arguments: <filename> <s1> <s2>"
-# define ERR_OPEN_MSG "Cant Open file: "
+# define ERR_OPEN_MSG "Cant open file: "
+# define ERR_NO_INPUT "One or more arguments are empty"
 # define MIN_ARGS	4
 # define FILE_INDEX 1
 # define S1_INDEX   2
