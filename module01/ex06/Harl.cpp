@@ -24,7 +24,7 @@ void Harl::complain(std::string level) {
             Harl::error();
             break;
         case (complain::DEFAULT):
-            std::cerr << "Harl is debugging your input, after some time triying to decrypt your segfaultish code he understands that it doesn't make any sense!" << std::endl;
+            std::cerr << "[ Probably complaining about insignificant problems ]" << std::endl;
         default:
             return;
     }
