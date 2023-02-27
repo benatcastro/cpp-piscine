@@ -23,6 +23,8 @@ void Harl::complain(std::string level) {
         case (complain::ERROR):
             Harl::error();
             break;
+        case (complain::DEFAULT):
+            std::cerr << "Harl is debugging your input, after some time triying to decrypt your segfaultish code he understands that it doesn't make any sense!" << std::endl;
         default:
             return;
     }
@@ -30,18 +32,22 @@ void Harl::complain(std::string level) {
 }
 
 void Harl::debug() {
+    std::cout << "[DEBUG]" << std::endl;
     std::cout << DEBUG_MSG << std::endl;
 }
 
 void Harl::info() {
+    std::cout << "[INFO]" << std::endl;
     std::cout << INFO_MSG << std::endl;
 }
 
 void Harl::warning() {
+    std::cout << "[WARNING]" << std::endl;
     std::cout << WARNING_MSG << std::endl;
 }
 
 void Harl::error() {
+    std::cout << "[ERROR]" << std::endl;
     std::cout << ERROR_MSG << std::endl;
 }
 

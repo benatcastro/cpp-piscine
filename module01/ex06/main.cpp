@@ -1,15 +1,11 @@
 #include "Harl.hpp"
 
-int main(void)
+int main(int argc, char **argv)
 {
     Harl Harl;
-
-    std::cout << "complain level: debug" <<std::endl;
-    Harl.complain("DEBUG");
-    std::cout << "complain level: info" <<std::endl;
-    Harl.complain("INFO");
-    std::cout << "complain level: warning" <<std::endl;
-    Harl.complain("WARNING");
-    std::cout << "complain level: error" <<std::endl;
-    Harl.complain("ERROR");
+    if (argc > 2) {
+        std::cerr << "Harl only accepts 1 argument!" << std::endl;
+        return (EXIT_FAILURE);
+    }
+    Harl.complain(argv[1]);
 }
