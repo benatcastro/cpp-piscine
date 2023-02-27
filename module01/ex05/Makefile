@@ -1,4 +1,4 @@
-NAME		=	harlFilter
+NAME		=	Harl
 CXX			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 OBJS		=	main.o Harl.o
