@@ -1,6 +1,6 @@
 NAME		=	harlFilter
 CXX			=	c++
-CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address
 OBJS		=	main.o Harl.o
 RM			=	rm -f
 
