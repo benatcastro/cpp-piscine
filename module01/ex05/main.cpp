@@ -5,11 +5,11 @@ int main(void)
     Harl Harl;
 
     std::cout << "complain level: debug" <<std::endl;
-    Harl.complain("debug");
+    Harl.complain("DEBUG");
     std::cout << "complain level: info" <<std::endl;
-    Harl.complain("info");
+    Harl.complain("INFO");
     std::cout << "complain level: warning" <<std::endl;
-    Harl.complain("warning");
+    Harl.complain("WARNING");
     std::cout << "complain level: error" <<std::endl;
-    Harl.complain("error");
+    Harl.complain("ERROR");
 }

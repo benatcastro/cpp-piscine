@@ -1,7 +1,7 @@
 #include "Harl.hpp"
 
 int getComplainLevel(const std::string &level) {
-    std::string complainLevels[]    = {"debug", "info", "warning", "error"};
+    std::string complainLevels[]    = {"DEBUG", "INFO", "WARNING", "ERROR"};
     for (int i = 0; i < 4; i++)
         if ( level == complainLevels[i])
             return (i);
@@ -17,7 +17,6 @@ void Harl::complain(std::string level) {
     if (complainIndex != -1)
         (this->*complainFncs[complainIndex])();
 }
-
 void Harl::debug() {
     std::cout << DEBUG_MSG << std::endl;
 }
@@ -33,4 +32,5 @@ void Harl::warning() {
 void Harl::error() {
     std::cout << ERROR_MSG << std::endl;
 }
+
 
