@@ -7,10 +7,10 @@ class Fixed {
         Fixed(const Fixed &obj);            // Copy constructor
         ~Fixed();                           // Destructor
         Fixed   &operator=(Fixed &obj);      // Assignment operator
-        int     getRawBits(void);
+        int     getRawBits(void) const;
         void    setRawBits(int const raw);
     private:
-        int                 fixedValue;
-        static const int    bits;
+        int                 _fixedValue;
+        static const int    _bits;
 };
 #endif

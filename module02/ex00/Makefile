@@ -1,7 +1,7 @@
 NAME		=	Fixed
 CXX			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
-OBJS		=	main.o Harl.o
+OBJS		=	main.o Fixed.o
 RM			=	rm -f
 
 all: $(NAME)
