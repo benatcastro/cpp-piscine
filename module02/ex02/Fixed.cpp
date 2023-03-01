@@ -32,40 +32,83 @@ float Fixed::toFloat(void) const {
     return ((float)this->_fixedValue / (1 << this->_bits));
 }
 
-// Operators
+// Compare operators
 
-bool    Fixed::operator>(const Fixed &toCompare) const {
-    std::cout << "> called\n";
-    return (this->_fixedValue > toCompare._fixedValue);
+bool    operator>(const Fixed &lhs, const Fixed &rhs) {
+    std::cout << "operator: (" << lhs.getFixedValue() << " > " << rhs.getFixedValue() << ")\n";
+    return (lhs.getFixedValue() > rhs.getFixedValue());
 }
 
-bool    Fixed::operator<(const Fixed &toCompare) const {
-    std::cout << "< called\n";
-    return (this->_fixedValue < toCompare._fixedValue);
+bool    operator<(const Fixed &lhs, const Fixed &rhs) {
+    std::cout << "operator: (" << lhs.getFixedValue() << " < " << rhs.getFixedValue() << ")\n";
+    return (lhs.getFixedValue() < rhs.getFixedValue());
 }
 
-bool    Fixed::operator>=(const Fixed &lhs, const Fixed &rhs) const {
-    std::cout << ">= called\n";
-    return (lhs == rhs || rhs > lhs);
+bool    operator>=(const Fixed &lhs, const Fixed &rhs) {
+    std::cout << "operator: (" << lhs.getFixedValue() << " >= " << rhs.getFixedValue() << ")\n";
+    return (lhs.getFixedValue() == rhs.getFixedValue() || lhs.getFixedValue() > rhs.getFixedValue());
 }
 
-bool    Fixed::operator<=(const Fixed &lhs, const Fixed &rhs) const {
-    std::cout << "<= called\n";
-    return (lhs == rhs || rhs < lhs);
+bool    operator<=(const Fixed &lhs, const Fixed &rhs) {
+    std::cout << "operator: (" << lhs.getFixedValue() << " <= " << rhs.getFixedValue() << ")\n";
+    return (lhs.getFixedValue() == rhs.getFixedValue() || lhs.getFixedValue() < rhs.getFixedValue());
 }
 
-bool    Fixed::operator==(const Fixed &lhs, const Fixed &rhs) const {
-    std::cout << "== called\n";
-    return (lhs == rhs);
+bool    operator==(const Fixed &lhs, const Fixed &rhs) {
+    std::cout << "operator: (" << lhs.getFixedValue() << " == " << rhs.getFixedValue() << ")\n";
+    return (lhs.getFixedValue() == rhs.getFixedValue());
 }
 
-bool    Fixed::operator!=(const Fixed &lhs, const Fixed &rhs) const {
-    std::cout << "!= called\n";
-    return !(lhs == rhs);
+bool    operator!=(const Fixed &lhs, const Fixed &rhs) {
+    std::cout << "operator: (" << lhs.getFixedValue() << " != " << rhs.getFixedValue() << ")\n";
+    return (lhs.getFixedValue() != rhs.getFixedValue());
 }
 
+// Arithmetic operators
+
+Fixed    Fixed::operator+(const Fixed &value) {
+    std::cout << "operator: (" << this->getFixedValue() << " + " << value.getFixedValue() << ")\n";
+    Fixed result(this->getFixedValue() + value.getFixedValue());
+
+    return (result);
+}
+
+Fixed    Fixed::operator-(const Fixed &value) {
+    std::cout << "operator: (" << this->getFixedValue() << " - " << value.getFixedValue() << ")\n";
+    Fixed result(this->getFixedValue() - value.getFixedValue());
+
+    return (result);
+}
+
+Fixed    Fixed::operator*(const Fixed &value) {
+    std::cout << "operator: (" << this->getFixedValue() << " * " << value.getFixedValue() << ")\n";
+    Fixed result(this->getFixedValue() * value.getFixedValue());
+
+    return (result);
+}
+
+Fixed    Fixed::operator/(const Fixed &value) {
+    std::cout << "operator: (" << this->getFixedValue() << " / " << value.getFixedValue() << ")\n";
+    Fixed result(this->getFixedValue() / value.getFixedValue());
+
+    return (result);
+}
+
+Fixed Fixed::operator++() {
+    std::cout << "operator: (++pre) called\n";
+
+    return (this->_fixedValue += (1 << this->_bits));
+
+}
+
+Fixed Fixed::operator++(int) {
+    std::cout << "operator: (post++) called\n";
+    return (this->_fixedValue += (1 << this->_bits));
+
+}
 
 std::ostream  &operator<<(std::ostream &os, const Fixed &obj) {
+//    std::cout << "operator (<<) called\n";
     os << obj.toFloat();
     return (os);
 }

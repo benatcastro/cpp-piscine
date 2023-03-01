@@ -14,20 +14,34 @@ class Fixed {
         float   toFloat(void) const;
         int     toInt(void) const;
 
-        // Comparation overloads
+    // Arithmetic overloads
 
-        bool    Fixed::operator>(const Fixed &toCompare) const;
-        bool    Fixed::operator<(const Fixed &toCompare) const;
-        bool    Fixed::operator<=(const Fixed &lhs, const Fixed &rhs) const;
-        bool    Fixed::operator>=(const Fixed &lhs, const Fixed &rhs) const;
-        bool    Fixed::operator==(const Fixed &lhs, const Fixed &rhs) const;
-        bool    Fixed::operator!=(const Fixed &lhs, const Fixed &rhs) const;
+    Fixed    operator+(const Fixed &value);
+    Fixed    operator-(const Fixed &value);
+    Fixed    operator*(const Fixed &value);
+    Fixed    operator/(const Fixed &value);
 
+    // Increment overloas
+
+    Fixed    operator++(int);
+    Fixed    operator++();
     private:
         int                 _fixedValue;
         static const int    _bits = 8;
 };
 
-std::ostream  &operator<<(std::ostream &os, const Fixed &obj);
+// Out operator
+std::ostream    &operator<<(std::ostream &os, const Fixed &obj);
 
+// < >  operators
+bool            operator>(const Fixed &lhs, const Fixed &rhs);
+bool            operator<(const Fixed &lhs, const Fixed &rhs);
+
+// <= >= operators
+bool            operator<=(const Fixed &lhs, const Fixed &rhs);
+bool            operator>=(const Fixed &lhs, const Fixed &rhs);
+
+// == != operators
+bool            operator!=(const Fixed &lhs, const Fixed &rhs);
+bool            operator==(const Fixed &lhs, const Fixed &rhs);
 #endif
