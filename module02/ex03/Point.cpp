@@ -12,6 +12,13 @@ Point::Point(const Point &obj): x(obj.x), y(obj.y) {
     std::cout << "Point copy constructor called\n";
 }
 
+Point &Point::operator=(const Point &obj)
+{
+    (Fixed &)x = obj.x;
+    (Fixed &)y = obj.y;
+    return (*this);
+}
+
 Point::~Point() {
     std::cout << "Point destructor called\n";
 }
