@@ -9,6 +9,8 @@ class Point {
         Point(float const x, float const y);
         Point(Point const &obj);
         ~Point(void);
+        Fixed   getX(void) const;
+        Fixed   getY(void) const;
         void    print(void);
 
         // Overloads
