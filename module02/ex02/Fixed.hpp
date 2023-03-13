@@ -21,7 +21,7 @@ class Fixed {
     Fixed    operator*(const Fixed &value);
     Fixed    operator/(const Fixed &value);
 
-    // Increment overloas
+    // Increment overloads
 
     Fixed    operator++(int);
     Fixed    operator++();
