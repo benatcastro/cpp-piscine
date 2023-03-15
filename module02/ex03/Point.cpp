@@ -38,11 +38,25 @@ Point &Point::operator=(const Point &obj)
     return (*this);
 }
 
-bool    operator==(const Point &lhs, const Point &rhs) {
-
-   return (lhs.getX() == rhs.getX() && lhs.getY() == rhs.getY());
+bool    operator>(const Point &lhs, const Point &rhs) {
+    return (lhs.getY() > rhs.getY() && lhs.getX() > rhs.getX());
 }
 
+bool    operator<(const Point &lhs, const Point &rhs) {
+    return (lhs.getY() < rhs.getY() && lhs.getX() < rhs.getX());
+}
+
+bool    operator>=(const Point &lhs, const Point &rhs) {
+    return (lhs.getY() >= rhs.getY() && lhs.getX() >= rhs.getX());
+}
+
+bool    operator<=(const Point &lhs, const Point &rhs) {
+    return (lhs.getY() <= rhs.getY() && lhs.getX() <= rhs.getX());
+}
+
+bool    operator==(const Point &lhs, const Point &rhs) {
+    return (lhs.getY() == rhs.getY() && lhs.getX() == rhs.getX());
+}
 void Point::print(void) {
     std::cout << "X:" << this->x <<  " | " <<  "Y:" << this->y << "\n";
 }

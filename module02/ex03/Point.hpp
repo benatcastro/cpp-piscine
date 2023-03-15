@@ -24,5 +24,14 @@ class Point {
 };
 
 bool    operator==(const Point &lhs, const Point &rhs);
+// < >  operators
+bool            operator>(const Point &lhs, const Point &rhs);
+bool            operator<(const Point &lhs, const Point &rhs);
+
+// <= >= operators
+bool            operator<=(const Point &lhs, const Point &rhs);
+bool            operator>=(const Point &lhs, const Point &rhs);
+
+// == != operators
 
 #endif
