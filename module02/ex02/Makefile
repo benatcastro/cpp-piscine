@@ -1,4 +1,4 @@
-NAME		=	fixedTwo
+NAME		=	fixed02
 CXX			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
 OBJS		=	main.o Fixed.o
