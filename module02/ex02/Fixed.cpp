@@ -2,7 +2,7 @@
 
 Fixed::Fixed() {
     std::cout << "Default constructor\n";
-    this->_fixedValue = 0;
+//    this->_fixedValue = 0;
 }
 
 Fixed::Fixed(const int n): _fixedValue(n << 8) {
@@ -100,16 +100,18 @@ Fixed    Fixed::operator/(const Fixed &value) {
     return (result);
 }
 
+Fixed Fixed::operator++(int) {
+    Fixed tmp(*this);
+    std::cout << "operator: (post++) called\n";
+    operator++();
+    return (tmp);
+}
+
 Fixed Fixed::operator++() {
     std::cout << "operator: (++pre) called\n";
 
-    return (++this->_fixedValue);
-}
-
-Fixed Fixed::operator++(int) {
-    std::cout << "operator: (post++) called\n";
-
-    return (this->_fixedValue++);
+    ++this->_fixedValue;
+    return (*this);
 }
 
 std::ostream  &operator<<(std::ostream &os, const Fixed &obj) {
@@ -117,3 +119,30 @@ std::ostream  &operator<<(std::ostream &os, const Fixed &obj) {
     return (os);
 }
 
+const Fixed &Fixed::max(Fixed const &lhs, Fixed const &rhs) {
+    if (lhs > rhs)
+        return (lhs);
+    else
+        return (rhs);
+}
+
+const Fixed &Fixed::max(Fixed &lhs, Fixed &rhs) {
+    if (lhs > rhs)
+        return (lhs);
+    else
+        return (rhs);
+}
+
+const Fixed &Fixed::min(Fixed &lhs, Fixed &rhs) {
+    if (lhs < rhs)
+        return (lhs);
+    else
+        return (rhs);
+}
+
+const Fixed &Fixed::min(Fixed const &lhs, Fixed const &rhs) {
+    if (lhs < rhs)
+        return (lhs);
+    else
+        return (rhs);
+}

@@ -5,14 +5,18 @@
 
 class Fixed {
     public:
-        Fixed(void);                        // Default constructor
-        Fixed(const int n);                 // Integer overload
-        Fixed(const float f);               // Float overload
-        Fixed(const Fixed &obj);            // Copy constructor
-        ~Fixed();                           // Destructor
-        int     getFixedValue(void) const;
-        float   toFloat(void) const;
-        int     toInt(void) const;
+    Fixed(void);                        // Default constructor
+    Fixed(const int n);                 // Integer overload
+    Fixed(const float f);               // Float overload
+    Fixed(const Fixed &obj);            // Copy constructor
+    ~Fixed();                           // Destructor
+    int             getFixedValue(void) const;
+    float           toFloat(void) const;
+    int             toInt(void) const;
+    static const Fixed    &min(Fixed &lhs, Fixed &rhs);
+    static const Fixed    &min(Fixed const &lhs, Fixed const &rhs);
+    static const Fixed    &max(Fixed &lhs, Fixed &rhs);
+    static const Fixed    &max(Fixed const &lhs, Fixed const &rhs);
 
     // Arithmetic overloads
 
@@ -23,11 +27,11 @@ class Fixed {
 
     // Increment overloads
 
-    Fixed    operator++(int);
-    Fixed    operator++();
+    Fixed   operator++(int);
+    Fixed   operator++();
     private:
-        int                 _fixedValue;
-        static const int    _bits = 8;
+    int                 _fixedValue;
+    static const int    _bits = 8;
 };
 
 // Out operator
