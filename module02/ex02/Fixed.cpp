@@ -1,19 +1,18 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() {
-    std::cout << "Default constructor\n";
-//    this->_fixedValue = 0;
+Fixed::Fixed(): _fixedValue(0) {
+//    std::cout << "Default constructor\n";
 }
 
 Fixed::Fixed(const int n): _fixedValue(n << 8) {
-    std::cout << "Int constructor\n";
+//    std::cout << "Int constructor\n";
 }
 
 Fixed::Fixed(const float f): _fixedValue(roundf(f * (1 << 8))) {
-    std::cout << "Float constructor\n";
+//    std::cout << "Float constructor\n";
 }
 Fixed::Fixed(const Fixed &obj) {
-    std::cout << "Copy constructor called\n";
+//    std::cout << "Copy constructor called\n";
     this->_fixedValue = obj._fixedValue;
 }
 
@@ -21,7 +20,7 @@ int Fixed::getFixedValue() const {
     return (this->_fixedValue);
 }
 Fixed::~Fixed() {
-    std::cout << "Destructor called\n";
+//    std::cout << "Destructor called\n";
 }
 
 int Fixed::toInt(void) const {
@@ -103,7 +102,8 @@ Fixed    Fixed::operator/(const Fixed &value) {
 Fixed Fixed::operator++(int) {
     Fixed tmp(*this);
     std::cout << "operator: (post++) called\n";
-    operator++();
+    this->_fixedValue++;
+//    operator++();
     return (tmp);
 }
 
