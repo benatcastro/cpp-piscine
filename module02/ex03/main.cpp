@@ -1,25 +1,31 @@
 #include "Point.hpp"
 
-Fixed computeArea(Point a, Point b, Point c) {
-    Fixed   semiP;
+bool fixedRange(Fixed const f, Fixed const min, Fixed const max) {
+    if (f > min && f < max)
+        return (true);
+    return (false);
+}
 
-    semiP = (a.getX() * (b.getY() - c.getY()))
-            + (b.getX() * (c.getY() - a.getY()))
-            + (c.getX() * (a.getY() - b.getY()));
-    if ((semiP / 2) > 0)
-        return (semiP / 2);
-    return ((semiP / 2) * -1);
+Fixed det(Point const a, Point const b){
+    return ((a.getX() * b.getY()) - (a.getY() * b.getX()));
+}
+
+Fixed convexPoint(Point const a, Point const b, Point const c, Point const point)
+{
+    return ((det(point, c) - det(a, c)) / det(b, c));
 }
 
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
-    Fixed aSum;
+    Fixed convexA = convexPoint(a, b, c, point);
+    Fixed convexB = convexPoint(b, c, a, point);
+    Fixed convexC = convexPoint(c, b, a, point);
 
-    aSum = computeArea(a, b, point) + computeArea(b, c, point) + computeArea(a, c, point);
-    std::cout << "asum:" << aSum << "\n";
-    if (aSum > computeArea(a, b, c))
-        return (false);
-    return (true);
+    if (fixedRange(convexA, 0, 1)
+        && fixedRange(convexB, 0, 1)
+        && fixedRange(convexC, 0, 1))
+        return (true);
+    return (false);
 }
 
 
@@ -27,7 +33,7 @@ int main( void ) {
     Point a(5, 3);
     Point b(0, 10);
     Point c(1,-1);
-    Point point(1,1);
+    Point point(2,4);
 
     std::cout << bsp(a, b, c, point) << "\n";
 
