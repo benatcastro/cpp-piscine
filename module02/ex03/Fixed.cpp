@@ -34,6 +34,7 @@ float Fixed::toFloat(void) const {
 
 // Assignament operator
 void Fixed::operator=(Fixed const &fixed) {
+//    std::cout << "Assignment called\n";
     this->_fixedValue = fixed.getFixedValue();
 }
 // Compare operators
