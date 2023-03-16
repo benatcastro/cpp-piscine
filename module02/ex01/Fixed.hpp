@@ -10,7 +10,8 @@ class Fixed {
         Fixed(const float f);               // Float overload
         Fixed(const Fixed &obj);            // Copy constructor
         ~Fixed();                           // Destructor
-//        Fixed   &operator=(Fixed &obj);      // Assignment operator
+        Fixed   &operator=(Fixed const &obj);      // Assignment operator
+//        Fixed   &operator=(Fixed &lhs, Fixed &rhs);      // Assignment operator
         int     getFixedValue(void) const;
         float   toFloat(void) const;
         int     toInt(void) const;

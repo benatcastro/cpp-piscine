@@ -17,6 +17,12 @@ Fixed::Fixed(const Fixed &obj) {
     this->_fixedValue = obj._fixedValue;
 }
 
+Fixed   &Fixed::operator=(Fixed const &obj) {
+    std::cout << "Assignment operator called\n";
+    this->_fixedValue = obj._fixedValue;
+    return (*this);
+}
+
 int Fixed::getFixedValue() const {
     return (this->_fixedValue);
 }
