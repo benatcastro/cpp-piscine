@@ -7,12 +7,14 @@ Fixed::Fixed() {
 }
 
 Fixed::Fixed(const Fixed &obj) {
+    std::cout << "Copy constructor called\n";
     this->_fixedValue = obj._fixedValue;
 }
-Fixed   &Fixed::operator=(Fixed &obj) {
 
-   this->_fixedValue = obj._fixedValue;
-   return (*this);
+Fixed   &Fixed::operator=(Fixed &obj) {
+    std::cout << "Assignment operator called\n";
+    this->_fixedValue = obj._fixedValue;
+    return (*this);
 }
 
 Fixed::~Fixed() {
