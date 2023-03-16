@@ -1,7 +1,7 @@
-NAME		=	Fixed
+NAME		=	ClapTrap00
 CXX			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
-OBJS		=	main.o Fixed.o
+OBJS		=	main.o ClapTrap.o
 RM			=	rm -f
 
 all: $(NAME)

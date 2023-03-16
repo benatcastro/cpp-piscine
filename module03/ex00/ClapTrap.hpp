@@ -2,6 +2,7 @@
 #define CLAPTRAP_HPP
 
 #include <string>
+#include <iostream>
 
 #define ENERGY_COST 1
 
