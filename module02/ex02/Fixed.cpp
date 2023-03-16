@@ -33,6 +33,12 @@ float Fixed::toFloat(void) const {
 
 // Compare operators
 
+Fixed   &Fixed::operator=(Fixed const &obj) {
+    std::cout << "Assignment operator called\n";
+    this->_fixedValue = obj._fixedValue;
+    return (*this);
+}
+
 bool    operator>(const Fixed &lhs, const Fixed &rhs) {
     std::cout << "operator: (" << lhs.getFixedValue() << " > " << rhs.getFixedValue() << ")\n";
 
@@ -111,6 +117,21 @@ Fixed Fixed::operator++() {
     std::cout << "operator: (++pre) called\n";
 
     ++this->_fixedValue;
+    return (*this);
+}
+
+Fixed Fixed::operator--(int) {
+    Fixed tmp(*this);
+    std::cout << "operator: (post++) called\n";
+    this->_fixedValue--;
+//    operator++();
+    return (tmp);
+}
+
+Fixed Fixed::operator--() {
+    std::cout << "operator: (++pre) called\n";
+
+    --this->_fixedValue;
     return (*this);
 }
 

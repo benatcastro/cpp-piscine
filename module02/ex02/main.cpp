@@ -28,6 +28,16 @@ int main( void ) {
     std::cout << a++ << std::endl;
     std::cout << a << std::endl;
     std::cout << b << std::endl;
+    std::cout << "=====Decrement overloads=====\n";
+    std::cout << "A:" << a << " " << "B:" << b << std::endl;
+    std::cout << a << std::endl;
+    std::cout << --a << std::endl;
+    std::cout << a << std::endl;
+    std::cout << a-- << std::endl;
+    std::cout << a << std::endl;
+    std::cout << b << std::endl;
+    std::cout << "=====Max/Min fncs=====\n";
+    std::cout << "A:" << a << " " << "B:" << b << std::endl;
     std::cout << Fixed::max( a, b ) << std::endl;
     std::cout << Fixed::min(a, b) << std::endl;
     return 0;

@@ -9,6 +9,7 @@ class Fixed {
     Fixed(const int n);                 // Integer overload
     Fixed(const float f);               // Float overload
     Fixed(const Fixed &obj);            // Copy constructor
+    Fixed   &operator=(Fixed const &obj);      // Assignment operator
     ~Fixed();                           // Destructor
     int             getFixedValue(void) const;
     float           toFloat(void) const;
@@ -29,6 +30,10 @@ class Fixed {
 
     Fixed   operator++(int);
     Fixed   operator++();
+    // Decrement overloads
+
+    Fixed   operator--(int);
+    Fixed   operator--();
     private:
     int                 _fixedValue;
     static const int    _bits = 8;
