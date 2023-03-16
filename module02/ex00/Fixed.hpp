@@ -6,7 +6,7 @@ class Fixed {
         Fixed(void);                        // Default constructor
         Fixed(const Fixed &obj);            // Copy constructor
         ~Fixed();                           // Destructor
-        Fixed   &operator=(Fixed &rhs);      // Assignment operator
+        Fixed   &operator=(Fixed const &rhs);      // Assignment operator
         int     getRawBits(void) const;
         void    setRawBits(int const raw);
     private:
