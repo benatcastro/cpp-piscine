@@ -63,9 +63,9 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
     aSum = computeArea(a, b, point) + computeArea(b, c, point) + computeArea(a, c, point);
     inEdges = betweenVectors(a, b, point) || betweenVectors(a, c, point) || betweenVectors(c, b, point);
     inVectors = (point == a || point == b || point == c);
-    std::cout << "Area condition:" << !(aSum == computeArea(a, b, c)) << std::endl;
-    std::cout << "Edge condition:" << inEdges << std::endl;
-    std::cout << "Vector condition:" << inVectors << std::endl;
+//    std::cout << "Area condition:" << !(aSum == computeArea(a, b, c)) << std::endl;
+//    std::cout << "Edge condition:" << inEdges << std::endl;
+//    std::cout << "Vector condition:" << inVectors << std::endl;
 //    std::cout << aSum << std::endl;
 //    std::cout << computeArea(a, b, c) << std::endl;
     return !(!(aSum == computeArea(a, b, c)) || inEdges || inVectors);
