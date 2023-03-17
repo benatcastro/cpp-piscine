@@ -25,38 +25,6 @@ ClapTrap &ClapTrap::operator=(ClapTrap &obj) {
     return (*this);
 }
 
-//void ClapTrap::setName(const std::string name) {
-//    this->_name = name;
-//}
-//
-//void ClapTrap::setAttackDamage(u_int32_t ad) {
-//    this->_ad = ad;
-//}
-//
-//void ClapTrap::setEnergyPoints(u_int32_t ep) {
-//    this->_ep = ep;
-//}
-//
-//void ClapTrap::setHitPoints(u_int32_t hp) {
-//    this->_hp = hp;
-//}
-//
-//std::string &ClapTrap::getName() {
-//    return (this->_name);
-//}
-//
-//u_int32_t &ClapTrap::getAttackDamage() {
-//    return (this->_ad);
-//}
-//
-//u_int32_t &ClapTrap::getEnergyPoints() {
-//    return (this->_ep);
-//}
-//
-//u_int32_t &ClapTrap::getHitPoints() {
-//    return (this->_hp);
-//}
-
 bool ClapTrap::canUseAction() {
     bool useAction = true;
 

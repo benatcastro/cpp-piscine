@@ -29,6 +29,10 @@ ScavTrap::~ScavTrap() {
 }
 
 void ScavTrap::guardGate() {
+    if (this->_hp < 1) {
+        std::cout << "ScavTrap " << this->_name << " is dead and can't guard the gate!\n";
+        return;
+    }
     std::cout << "ScavTrap " << this->_name << " is guarding the gate!\n";
 
 }
@@ -50,7 +54,7 @@ bool ScavTrap::canUseAction() {
 void ScavTrap::attack(const std::string &target) {
     if (!this->canUseAction()) return;
     this->_ep--;
-    std::cout << "ScavTrap attacks using his robotic arms " << target << ", causing " << this->_ad << " points of damage!\n";
+    std::cout << "ScavTrap " << this->_name << " uses his robotic arms to attack " << target << ", causing " << this->_ad << " points of damage!\n";
     return ;
 
 }

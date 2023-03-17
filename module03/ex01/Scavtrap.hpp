@@ -4,7 +4,7 @@
 #include "ClapTrap.hpp"
 #include <string>
 
-class ScavTrap: protected ClapTrap {
+class ScavTrap: public ClapTrap {
 public:
     ScavTrap(std::string const name);
     ScavTrap(ScavTrap &obj);
