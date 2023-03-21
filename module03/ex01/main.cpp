@@ -4,10 +4,12 @@
 int main(void) {
     ClapTrap bob;
     ScavTrap francinette("Cagandou");
-    ScavTrap francinette2("Moulinette");
+    ScavTrap francinette2(francinette);
 
-    bob.attack("bob's target");
-    francinette.attack("franks's target");
+    francinette = francinette2;
+
+    bob.attack("bob");
+    francinette.attack("frank");
     francinette.takeDamage(500);
     francinette.guardGate();
     francinette2.guardGate();

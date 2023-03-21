@@ -16,14 +16,6 @@ public:
     void        takeDamage(unsigned int amount);
     void        beRepaired(unsigned int amount);
     bool        canUseAction(void);
-//    std::string &getName(void);
-//    u_int32_t   &getEnergyPoints(void);
-//    u_int32_t   &getHitPoints(void);
-//    u_int32_t   &getAttackDamage(void);
-//    void        setName(std::string const name);
-//    void        setEnergyPoints(u_int32_t ep);
-//    void        setHitPoints(u_int32_t hp);
-//    void        setAttackDamage(u_int32_t ad);
 
 protected:
     std::string _name;
