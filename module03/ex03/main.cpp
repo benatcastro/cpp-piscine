@@ -13,6 +13,8 @@ int main(void) {
     frag.attack("Frag test");
     d.ScavTrap::attack("Diamond test");
     d.whoAmI();
+    d.guardGate();
+    d.highFiveGuys();
     d.takeDamage(100);
     d.whoAmI();
 }

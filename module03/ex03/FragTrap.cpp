@@ -10,7 +10,7 @@ FragTrap::FragTrap() {
 }
 
 FragTrap::FragTrap(__unused int n, std::string const clapName) {
-    std::cout << "Fragtrap diamond constructor called\n";
+    std::cout << "Fragtrap default constructor called\n";
     this->_hp = 100;
     this->_ep = 50;
     this->_ad = 30;
