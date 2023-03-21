@@ -26,6 +26,7 @@ ScavTrap::ScavTrap(ScavTrap &obj) {
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap &obj) {
+    std::cout << "ScavTrap assignment operator called\n";
     this->_name = obj._name;
     this->_hp = obj._hp;
     this->_ep = obj._ep;
