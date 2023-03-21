@@ -1,5 +1,14 @@
 #include "Scavtrap.hpp"
 
+ScavTrap::ScavTrap() {
+    std::cout << "ScavTrap default constructor called\n";
+    this->_name = "Scav Default";
+    this->_hp = 100;
+    this->_ep = 50;
+    this->_ad = 20;
+
+}
+
 ScavTrap::ScavTrap(const std::string name) {
     std::cout << "ScavTrap default constructor called\n";
     this->_name = name;
@@ -17,6 +26,7 @@ ScavTrap::ScavTrap(ScavTrap &obj) {
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap &obj) {
+    std::cout << "Assigment assigment operator called\n";
     this->_name = obj._name;
     this->_hp = obj._hp;
     this->_ep = obj._ep;
