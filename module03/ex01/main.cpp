@@ -11,6 +11,8 @@ int main(void) {
     bob.attack("bob");
     francinette.attack("frank");
     francinette.takeDamage(500);
+//    for (int i = 0; i < 200; i++)
+//        francinette.attack("frank");
     francinette.guardGate();
     francinette2.guardGate();
     bob.takeDamage(5);

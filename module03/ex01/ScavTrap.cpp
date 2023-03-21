@@ -43,7 +43,6 @@ void ScavTrap::guardGate() {
         return;
     }
     std::cout << "ScavTrap " << this->_name << " is guarding the gate!\n";
-
 }
 
 bool ScavTrap::canUseAction() {
