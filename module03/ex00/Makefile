@@ -1,4 +1,4 @@
-NAME		=	ClapTrap00
+NAME		=	Aaaaaand...OPEN!
 CXX			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
 OBJS		=	main.o ClapTrap.o
