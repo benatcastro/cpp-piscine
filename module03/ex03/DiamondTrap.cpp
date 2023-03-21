@@ -18,7 +18,10 @@ DiamondTrap::~DiamondTrap() {
 
 DiamondTrap::DiamondTrap(DiamondTrap &obj) {
     std::cout << "DiamondTrap copy constructor called\n";
-    (*this) = obj;
+    this->_name = obj._name;
+    this->_hp = obj._hp;
+    this->_ep = obj._ep;
+    this->_ad = obj._ad;
 }
 
 DiamondTrap DiamondTrap::operator=(const DiamondTrap &obj) {
