@@ -15,7 +15,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(PPHO)
 	@$(CXX) $(CXXFLAGS) $(OBJS) $(PPHO) -o $(NAME)
-	@printf "$(B_BLU)CREATING $(NC)$(B_WHT)%s$(NC)$(B_BLU)EXECUTABLE: $(B_WHT)$(NAME) $(NC);\n"
+	@printf "$(B_BLU)CREATING $(NC)$(B_WHT)%s$(NC)$(B_BLU)EXECUTABLE: $(B_WHT)$(NAME) $(NC)\n"
 $(PCH_OUT): $(PCH_SRC)
 	@$(MKDIR) $(OBJDIR)
 	@$(CXX) $(CXXFLAGS) -o $@ $<
