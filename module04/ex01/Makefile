@@ -1,4 +1,4 @@
-NAME		=	Polymorphism
+NAME		=	WorldOnFire
 NAME_S		=	Polymorphism_S
 CXX			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic #-fsanitize=address
@@ -32,8 +32,9 @@ re: fclean all
 clean:
 	$(RM) $(OBJS)
 
+
 fclean: clean
 	$(RM) $(NAME) $(NAME_S)
 
 
-.PHONY: all run clean fclean
+.PHONY: all run clean fclean const
