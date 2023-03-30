@@ -1,15 +1,11 @@
 #include "Node.hpp"
 #include <iostream>
+#include "Ice.hpp"
+#include "Cure.hpp"
 
+Node::Node() {}
 
-
-Node::Node() {
-    std::cout << "Node constructor called\n";
-}
-
-Node::~Node() {
-    std::cout << "Node destructor called\n";
-}
+Node::~Node() {}
 
 Node *Node::createNode(AMateria *content) {
     struct Node *newNode = new Node;
@@ -24,35 +20,29 @@ Node *Node::createNode(AMateria *content) {
 
 void Node::addNode(struct Node **head, struct Node *newNode) {
     struct Node *last;
-    std::cout << "ADDING MATERIA: " << newNode->materia->getType() << " TO LINKED\n";
+//    std::cout << "ADDING MATERIA: " << newNode->materia->getType() << " TO LINKED\n";
     if (!*head) {
         *head = newNode;
-//        std::cout << "FIRST NODE\n";
         return;
     }
     last = *head;
-    while (last) {
-        std::cout << "ITERATOR\n";
+    while (last->next) {
+//        std::cout << "ITERATOR\n";
         last = last->next;
     }
-//    std::cout << "TEST" << last;
-    last = newNode;
-//    std::cout << "TEST" << last;
-    Node::print(head);
+    last->next = newNode;
+//    Node::print(head);
 }
 
 void Node::freeList(struct Node *head) {
     struct Node *tmp;
 
-//    std::cout << "==========START=============\n";
-//    std::cout << "HEAD: " <<  head->next->materia->getType();
     while (head) {
-//        std::cout << "TEST\n";
         tmp = head;
         delete tmp->materia;
         head = head->next;
+        delete tmp;
     }
-//    std::cout << "==========================\n";
 }
 
 void Node::print(struct Node **head) {
@@ -68,3 +58,16 @@ void Node::print(struct Node **head) {
         tmp = tmp->next;
     }
 }
+
+void Node::copy(struct Node *node, struct Node *pNew)
+{
+    Node *tmp = node;
+    while (tmp) {
+        if (tmp->materia->getType() == "ice")
+            Node::addNode(&pNew, Node::createNode(new Ice));
+        if (tmp->materia->getType() == "cure")
+            Node::addNode(&pNew, Node::createNode(new Cure));
+        tmp = tmp->next;
+    }
+}
+

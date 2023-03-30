@@ -1,6 +1,6 @@
 NAME		=	AlLeVoYyYyyYY
 CXX			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic #-fsanitize=address
 OBJDIR		=	objs/
 PCHDIR		=	pch/
 SRCS		=	$(wildcard *.cpp)

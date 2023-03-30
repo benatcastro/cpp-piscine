@@ -25,14 +25,14 @@ Character::Character(const Character &obj):_name(obj._name) {
         if (obj._inventory[i]->getType() == "cure")
             _inventory[i] = new Cure();
     }
-    _matHead = obj._matHead;
+    Node::copy(obj._matHead, this->_matHead);
 }
 
 Character::~Character() {
     std::cout << "Character default destructor called for: " << this->_name << std::endl;
 //    for (int i = 0; i < INVENTORY_SIZE; i++)
 //       std::cout << _inventory[i]->getType() << std::endl;
-//
+
     for (int i = 0; i < INVENTORY_SIZE && _inventory[i]; i++) {
         delete _inventory[i];
     }
@@ -53,34 +53,34 @@ bool Character::isEquipped(AMateria *materia) {
 
 void Character::equip(AMateria *m) {
     if (isEquipped(m)) {
-        std::cout << "The materia is already equipped\n";
+        std::cout << BRED << "The materia is already equipped\n" << NC;
         return;
     }
     for (int i = 0; i < INVENTORY_SIZE; i++)
         if (!this->_inventory[i]) {
             this->_inventory[i] = m;
-            std::cout << this->_name << " equipped: " << m->getType() << " in slot: " << i << std::endl;
+            std::cout << BRED << this->_name << " equipped: " << m->getType() << " in slot: " << i << NC << std::endl;
             return;
         }
-    std::cout << "Cant equip materia: " << m->getType() << std::endl;
+    std::cout << BRED << "Cant equip materia: " << m->getType() << NC << std::endl;
 }
 
 void Character::unequip(int idx) {
     if (idx >= 0 && idx < INVENTORY_SIZE && this->_inventory[idx]) {
-        std::cout   << this->getName() << " is unequiping: " << this->_inventory[idx]->getType()
-                    << " materia from slot: " << idx << "\n";
+        std::cout   << BRED << this->getName() << " is unequiping: " << this->_inventory[idx]->getType()
+                    << " materia from slot: " << idx << "\n" << NC;
         Node::addNode(&_matHead, Node::createNode(_inventory[idx]));
         this->_inventory[idx] = NULL;
     }
     else
-        std::cout << this->_name <<  " cant't unequip slot: " << idx << std::endl;
-    Node::print(&_matHead);
+        std::cout << BRED << this->_name <<  " cant't unequip slot: " << idx << NC << std::endl;
+//    Node::print(&_matHead);
 }
 
 void Character::use(int idx, ICharacter &target) {
     if (idx < INVENTORY_SIZE && _inventory[idx])
         this->_inventory[idx]->use(target);
     else
-        std::cout << "Can't use slot: " << idx << std::endl;
+        std::cout << BRED << "Can't use slot: " << idx << NC << std::endl;
 }
 

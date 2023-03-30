@@ -1,19 +1,20 @@
 #include "Ice.hpp"
 #include <iostream>
+#include "Defines.hpp"
 
 Ice::Ice() {
     std::cout << "Ice materia constructed\n";
     this->_type = "ice";
 }
 
-Ice::Ice(__unused const Ice &obj) {
+Ice::Ice(const Ice &obj) {
     std::cout << "Ice copy constructor called\n";
+    *this = obj;
 }
 
 Ice &Ice::operator=(const Ice &ojb) {
-    // todo waiting for further declarations
-    Ice *tmp = new Ice(ojb);
-    return (*tmp);
+    this->_type = ojb._type;
+    return (*this);
 }
 
 Ice::~Ice() {
@@ -21,7 +22,7 @@ Ice::~Ice() {
 }
 
 void Ice::use(__unused ICharacter &target) {
-    std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
+    std::cout << BCYAN << "* shoots an ice bolt at " << target.getName() << " *\n" << NC;
 }
 
 AMateria *Ice::clone() const {

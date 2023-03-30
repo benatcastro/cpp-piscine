@@ -10,6 +10,7 @@
     static void         addNode(struct Node **head, struct Node *newNode);
     static void         freeList(struct Node *head);
     static void         print(struct Node **head);
+    static void         copy(struct Node *node, struct Node *pNew);
 
     int                 idx;
     AMateria            *materia;

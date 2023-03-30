@@ -38,20 +38,22 @@ void MateriaSource::learnMateria(AMateria *materia) {
     for (int i = 0; i < INVENTORY_SIZE; i++)
         if (!_materias[i]) {
             _materias[i] = materia;
-            std::cout << "Learned materia: " << materia->getType() << " in slot: " << i << std::endl;
+            std::cout << BGREEN << "Learned materia: " << materia->getType() << " in slot: " << i << NC << std::endl;
             return;
         }
-    std::cout << "Can't learn more materias\n";
+    std::cout << BGREEN << "Can't learn more materias\n" << NC;
+    if (materia)
+        delete materia;
 }
 
 AMateria *MateriaSource::createMateria(const std::string &type) {
     for (int i = 0; i < INVENTORY_SIZE && _materias[i]; i++) {
         if (this->_materias[i]->getType() == type) {
 //            std::cout << "type: " << this->_materias[i]->getType() << " original: "<< type << "\n";
-            std::cout << "Creating material: " << this->_materias[i]->getType() << " from slot: " << i << std::endl;
+            std::cout << BGREEN << "Creating material: " << this->_materias[i]->getType() << " from slot: " << i << NC << std::endl;
             return (this->_materias[i]->clone());
         }
     }
-    std::cout << "Cant't create materia " << type << std::endl;
+    std::cout << BGREEN << "Cant't create materia " << type << NC << std::endl;
     return (0);
 }

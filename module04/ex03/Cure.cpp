@@ -1,19 +1,20 @@
 #include "Cure.hpp"
 #include <iostream>
+#include "Defines.hpp"
 
 Cure::Cure() {
     std::cout << "Cure materia constructed\n";
     this->_type = "cure";
 }
 
-Cure::Cure(__unused const Cure &obj) {
-std::cout << "Cure copy constructor called\n";
-// Todo
+Cure::Cure(const Cure &obj) {
+    std::cout << "Cure copy constructor called\n";
+    *this = obj;
 }
 
-Cure &Cure::operator=(__unused const Cure &ojb) {
-// todo waiting for further declarations
-return (*this);
+Cure &Cure::operator=(const Cure &ojb) {
+    this->_type = ojb._type;
+    return (*this);
 }
 
 Cure::~Cure() {
@@ -21,7 +22,7 @@ Cure::~Cure() {
 }
 
 void Cure::use(ICharacter &target) {
-    std::cout << "* heals " << target.getName() << " 's wounds *\n";
+    std::cout << BCYAN << "* heals " << target.getName() << " 's wounds *\n" << NC;
 }
 
 AMateria *Cure::clone() const {
