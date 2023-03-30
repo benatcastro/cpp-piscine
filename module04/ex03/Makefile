@@ -9,6 +9,7 @@ PCH_OUT 	=	$(addprefix $(PCHDIR), $(PCH_SRC:.hpp=.hpp.gch))
 OBJS	 	=	$(addprefix $(OBJDIR), $(SRCS:.cpp=.o))
 MKDIR		=	mkdir -p
 RM			=	rm -fr
+ECHO		=	echo
 
 
 all: $(NAME)
@@ -37,6 +38,11 @@ clean:
 	@$(RM) $(OBJDIR)
 	@$(RM) $(PCHDIR)
 
+const: all
+	@$(ECHO) "n constructors ->"
+	@./$(NAME) | grep "cons" | wc -l
+	@$(ECHO) "n destructors ->"
+	@./$(NAME) | grep "dest" | wc -l
 fclean: clean
 	@$(RM) $(NAME)
 
@@ -60,4 +66,4 @@ B_CYN	=	\e[1;36m
 B_WHT	=	\e[1;37m
 NC	=	\e[0m
 
-.PHONY: all run clean fclean
+.PHONY: all run clean fclean const

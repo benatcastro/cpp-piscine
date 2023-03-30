@@ -70,4 +70,3 @@ void Node::copy(struct Node *node, struct Node *pNew)
         tmp = tmp->next;
     }
 }
-
