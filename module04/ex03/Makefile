@@ -2,9 +2,10 @@ NAME		=	AlLeVoYyYyyYY
 CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
 OBJDIR		=	objs/
+PCHDIR		=	pch/
 SRCS		=	$(wildcard *.cpp)
 PCH_SRC 	=	$(wildcard *.hpp)
-PCH_OUT 	=	$(addprefix $(OBJDIR), $(PCH_SRC:.hpp=.hpp.gch))
+PCH_OUT 	=	$(addprefix $(PCHDIR), $(PCH_SRC:.hpp=.hpp.gch))
 OBJS	 	=	$(addprefix $(OBJDIR), $(SRCS:.cpp=.o))
 MKDIR		=	mkdir -p
 RM			=	rm -fr
@@ -13,16 +14,18 @@ RM			=	rm -fr
 all: $(NAME)
 
 
-$(NAME): $(OBJS) $(PPHO)
-	@$(CXX) $(CXXFLAGS) $(OBJS) $(PPHO) -o $(NAME)
+$(NAME): $(OBJS)
+	@$(CXX) $(CXXFLAGS) $(OBJS) -I $(PCHDIR) -o $(NAME)
 	@printf "$(B_BLU)CREATING $(NC)$(B_WHT)%s$(NC)$(B_BLU)EXECUTABLE: $(B_WHT)$(NAME) $(NC)\n"
-$(PCH_OUT): $(PCH_SRC)
-	@$(MKDIR) $(OBJDIR)
-	@$(CXX) $(CXXFLAGS) -o $@ $<
-	@printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 $(OBJDIR)%.o: %.cpp $(PCH_OUT)
-	@$(CXX) $(CXXFLAGS) -include $(PCH_SRC) -c -o $@ $<
+	@$(MKDIR) $(OBJDIR)
+	@$(CXX) $(CXXFLAGS) -c -o $@ $<
+	@printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
+
+$(PCH_OUT): $(PCH_SRC)
+	@$(MKDIR) $(PCHDIR)
+	@$(CXX) $(CXXFLAGS) -o $@ $<
 	@printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 run: all
@@ -32,7 +35,7 @@ re: fclean all
 
 clean:
 	@$(RM) $(OBJDIR)
-	@$(RM) $(OBJS)
+	@$(RM) $(PCHDIR)
 
 fclean: clean
 	@$(RM) $(NAME)
