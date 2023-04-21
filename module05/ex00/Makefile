@@ -1,33 +1,53 @@
 NAME		=	Bureaucrat
+NAME_SANI	=	$(addsuffix _sani, $(NAME))
 CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic #-fsanitize=address
+SANI_FLAG	=	-fsanitize=address -g3
 OBJDIR		=	objs/
+OBJDIR_SANI	=	objs_sani/
 PCHDIR		=	pch/
 SRCS		=	$(wildcard *.cpp)
 PCH_SRC 	=	$(wildcard *.hpp)
 PCH_OUT 	=	$(addprefix $(PCHDIR), $(PCH_SRC:.hpp=.hpp.gch))
 OBJS	 	=	$(addprefix $(OBJDIR), $(SRCS:.cpp=.o))
+OBJS_SANI   = 	$(addprefix $(OBJDIR_SANI), $(SRCS:.cpp=_sani.o))
+
+
 MKDIR		=	mkdir -p
 RM			=	rm -fr
 ECHO		=	echo
 
 
-all: $(NAME)
+.SILENT:
 
+all: $(NAME) $(NAME_SANI)
+
+$(NAME_SANI): $(OBJS_SANI)
+	$(CXX) $(CXXFLAGS) $(SANI_FLAG) $(OBJS) -I $(PCHDIR) -o $(NAME_SANI)
+	printf "$(B_RED)CREATING $(NC)$(B_WHT)%s$(NC)$(B_RED)SANI EXECUTABLE: $(B_WHT)$(NAME_SANI) $(NC)\n"
+
+$(OBJS_SANI): $(SRCS) $(PCH_OUT)
+	$(MKDIR) $(OBJDIR_SANI)
+	$(CXX) $(CXXFLAGS) $(SANI_FLAG) -c -o $@ $<
+	printf "$(B_RED)Sani Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 $(NAME): $(OBJS)
-	@$(CXX) $(CXXFLAGS) $(OBJS) -I $(PCHDIR) -o $(NAME)
-	@printf "$(B_BLU)CREATING $(NC)$(B_WHT)%s$(NC)$(B_BLU)EXECUTABLE: $(B_WHT)$(NAME) $(NC)\n"
+	$(CXX) $(CXXFLAGS) $(OBJS) -I $(PCHDIR) -o $(NAME)
+	printf "$(B_BLU)CREATING $(NC)$(B_WHT)%s$(NC)$(B_BLU)EXECUTABLE: $(B_WHT)$(NAME) $(NC)\n"
 
 $(OBJDIR)%.o: %.cpp $(PCH_OUT)
-	@$(MKDIR) $(OBJDIR)
-	@$(CXX) $(CXXFLAGS) -c -o $@ $<
-	@printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
+	$(MKDIR) $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 $(PCH_OUT): $(PCH_SRC)
-	@$(MKDIR) $(PCHDIR)
-	@$(CXX) $(CXXFLAGS) -o $@ $<
-	@printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
+	$(MKDIR) $(PCHDIR)
+	$(CXX) $(CXXFLAGS) -o $@ $<
+	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
+
+sani: $(NAME_SANI)
+	./$(NAME_SANI)
+
 
 run: all
 	./$(NAME)
@@ -37,6 +57,7 @@ re: fclean all
 clean:
 	@$(RM) $(OBJDIR)
 	@$(RM) $(PCHDIR)
+	@$(RM) $(OBJDIR_SANI)
 
 const: all
 	@$(ECHO) "n constructors ->"
@@ -45,6 +66,7 @@ const: all
 	@./$(NAME) | grep "dest" | wc -l
 fclean: clean
 	@$(RM) $(NAME)
+	@$(RM) $(NAME_SANI)
 
 
 BLK		=	\e[0;30m
