@@ -23,13 +23,11 @@ public:
 
 	class GradeTooLowException: public std::invalid_argument {
 	public:
-
 		GradeTooLowException();
 	};
 
 	class GradeTooHighException: public std::invalid_argument {
 	public:
-
 		GradeTooHighException();
 	};
 
@@ -42,6 +40,8 @@ public:
 
 	Bureaucrat const operator=(Bureaucrat const &obj); // Assigment operator
 
+	void			incrementGrade(void);
+	void 			decrementGrade(void);
     const string	getName(void) const;
     unsigned short	getGrade(void) const;
 
