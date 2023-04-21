@@ -48,7 +48,6 @@ $(PCH_OUT): $(PCH_SRC)
 sani: $(NAME_SANI)
 	./$(NAME_SANI)
 
-
 run: all
 	./$(NAME)
 
