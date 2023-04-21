@@ -4,16 +4,11 @@ Bureaucrat::Bureaucrat():_name(DEFAULT_NAME), _grade(LOWEST_GRADE) {
 	cout << "Bureaucrat default constructor called\n";
 }
 
-Bureaucrat::Bureaucrat(string name, unsigned short grade):_name(name), _grade(grade) {
-	try {
-		if (grade < LOWEST_GRADE)
-			throw (Bureaucrat::GradeTooLowException());
-//		if (grade > HIGHEST_GRADE)
-//			throw (Bureaucrat::GradeTooHighException("high"));
-	}
-	catch (const std::exception &e) {
-		cerr << "Error creating bureacrat: " << e.what() << endl;
-	}
+Bureaucrat::Bureaucrat(const string &name, unsigned short grade):_name(name), _grade(grade) {
+	if (grade > LOWEST_GRADE)
+		throw (Bureaucrat::GradeTooHighException());
+	if (grade < HIGHEST_GRADE)
+		throw (Bureaucrat::GradeTooLowException());
 	cout << "Bureaucrat named: " << _name << " with grade: " << _grade << " created\n";
 }
 
@@ -27,7 +22,8 @@ Bureaucrat::~Bureaucrat() {
 
 const Bureaucrat Bureaucrat::operator=(const Bureaucrat &obj) {
 
-	this->_grade = obj._grade;
+	(string)_name = (string)obj._name;
+	_grade = obj._grade;
 	return (*this);
 }
 
@@ -42,4 +38,4 @@ const string Bureaucrat::getName() const { return(this->_name); }
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(): std::invalid_argument("grade must be higher than 1") {}
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(): std::invalid_argument("Grade must be lower than 150") {}
+Bureaucrat::GradeTooHighException::GradeTooHighException(): std::invalid_argument("grade must be lower than 150") {}

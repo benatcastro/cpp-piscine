@@ -34,7 +34,7 @@ public:
 	};
 
 	Bureaucrat(); // Default constructor
-	Bureaucrat(string name, unsigned short grade); // Grade constructor
+	Bureaucrat(const string &name, unsigned short grade); // Grade constructor
 
 	Bureaucrat(const Bureaucrat &obj); // Copy constructor
 

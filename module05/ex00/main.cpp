@@ -2,13 +2,43 @@
 
 int main(void) {
 	{
-		Bureaucrat def;
-		Bureaucrat another("bob", 0);
+		unsigned short grade = 0;
+		try {
+			Bureaucrat another("bob", grade);
+		}
+		catch (const std::exception &e) {
+			cerr << "Error creating bureuacrat: " << e.what() << endl;
+		}
 
-		cout << another << "\n";
-		def = another;
-		cout << "after copy\n";
-		cout << def << "\n";
+	}
+	{
+		unsigned short grade = 151;
+		try {
+			Bureaucrat another("bob", grade);
+		}
+		catch (const std::exception &e) {
+			cerr << "Error creating bureuacrat: " << e.what() << endl;
+		}
+
+	}
+	{
+		unsigned short grade = 20;
+		try {
+			Bureaucrat another("bob", grade);
+		}
+		catch (const std::exception &e) {
+			cerr << "Error creating bureuacrat: " << e.what() << endl;
+		}
+
+	}
+	{
+		unsigned short grade = -1;
+		try {
+			Bureaucrat another("bob", grade);
+		}
+		catch (const std::exception &e) {
+			cerr << "Error creating bureuacrat: " << e.what() << endl;
+		}
 
 	}
 	cout << "============LEAKS============\n";
