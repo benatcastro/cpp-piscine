@@ -1,7 +1,7 @@
 NAME		=	Bureaucrat
 NAME_SANI	=	$(addsuffix _sani, $(NAME))
 CXX			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic #-fsanitize=address
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
 SANI_FLAG	=	-fsanitize=address -g3
 OBJDIR		=	objs/
 OBJDIR_SANI	=	objs_sani/
@@ -18,32 +18,32 @@ RM			=	rm -fr
 ECHO		=	echo
 
 
-.SILENT:
+#.SILENT:
 
 all: $(NAME) $(NAME_SANI)
 
 $(NAME_SANI): $(OBJS_SANI)
 	$(CXX) $(CXXFLAGS) $(SANI_FLAG) $(OBJS) -I $(PCHDIR) -o $(NAME_SANI)
-	printf "$(B_RED)CREATING $(NC)$(B_WHT)%s$(NC)$(B_RED)SANI EXECUTABLE: $(B_WHT)$(NAME_SANI) $(NC)\n"
+#	printf "$(B_RED)CREATING $(NC)$(B_WHT)%s$(NC)$(B_RED)SANI EXECUTABLE: $(B_WHT)$(NAME_SANI) $(NC)\n"
 
 $(OBJS_SANI): $(SRCS) $(PCH_OUT)
-	$(MKDIR) $(OBJDIR_SANI)
+	@$(MKDIR) $(OBJDIR_SANI)
 	$(CXX) $(CXXFLAGS) $(SANI_FLAG) -c -o $@ $<
-	printf "$(B_RED)Sani Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
+#	printf "$(B_RED)Sani Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -I $(PCHDIR) -o $(NAME)
-	printf "$(B_BLU)CREATING $(NC)$(B_WHT)%s$(NC)$(B_BLU)EXECUTABLE: $(B_WHT)$(NAME) $(NC)\n"
+#	printf "$(B_BLU)CREATING $(NC)$(B_WHT)%s$(NC)$(B_BLU)EXECUTABLE: $(B_WHT)$(NAME) $(NC)\n"
 
 $(OBJDIR)%.o: %.cpp $(PCH_OUT)
-	$(MKDIR) $(OBJDIR)
+	@$(MKDIR) $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
-	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
+#	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 $(PCH_OUT): $(PCH_SRC)
-	$(MKDIR) $(PCHDIR)
+	@$(MKDIR) $(PCHDIR)
 	$(CXX) $(CXXFLAGS) -o $@ $<
-	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
+#	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 sani: $(NAME_SANI)
 	./$(NAME_SANI)
