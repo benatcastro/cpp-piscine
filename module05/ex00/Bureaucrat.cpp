@@ -33,25 +33,26 @@ std::ostream  &operator<<(std::ostream &os, const Bureaucrat &obj) {
 }
 
 void Bureaucrat::decrementGrade() {
-	if (_grade - 1 > LOWEST_GRADE)
-		throw (Bureaucrat::GradeTooHighException());
-	if (_grade - 1 < HIGHEST_GRADE)
-		throw (Bureaucrat::GradeTooLowException());
-	cout << _name << " grade: " << _grade << " -> " << _grade - 1 << "\n";
-	_grade--;
-}
-
-void Bureaucrat::incrementGrade() {
 	if (_grade + 1 > LOWEST_GRADE)
 		throw (Bureaucrat::GradeTooHighException());
 	if (_grade + 1 < HIGHEST_GRADE)
 		throw (Bureaucrat::GradeTooLowException());
+
 	cout << _name << " grade: " << _grade << " -> " << _grade + 1 << "\n";
+
 	_grade++;
-	if (_grade > LOWEST_GRADE)
+}
+
+void Bureaucrat::incrementGrade() {
+	if (_grade - 1 > LOWEST_GRADE)
 		throw (Bureaucrat::GradeTooHighException());
-	if (_grade < HIGHEST_GRADE)
+	if (_grade - 1 < HIGHEST_GRADE)
 		throw (Bureaucrat::GradeTooLowException());
+
+	cout << _name << " grade: " << _grade << " -> " << _grade - 1 << "\n";
+
+	_grade--;
+
 }
 
 unsigned short Bureaucrat::getGrade() const { return(this->_grade); }

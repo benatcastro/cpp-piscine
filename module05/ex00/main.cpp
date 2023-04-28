@@ -11,6 +11,7 @@ int main(void) {
 		}
 
 	}
+	std::cout << "\n\n";
 	{
 		unsigned short grade = 151;
 		try {
@@ -21,28 +22,34 @@ int main(void) {
 		}
 
 	}
+	std::cout << "\n\n";
 	{
 		unsigned short grade = 1;
 		try {
-			Bureaucrat another("bob", grade);
+			Bureaucrat another("patata alavesa", grade);
 			another.decrementGrade();
-		}
-		catch (const std::exception &e) {
-			cerr << "Error: " << e.what() << endl;
-		}
-
-	}
-	{
-		unsigned short grade = 150;
-		try {
-			Bureaucrat another("bob", grade);
+			another.incrementGrade();
+			another.incrementGrade();
 			another.incrementGrade();
 		}
 		catch (const std::exception &e) {
 			cerr << "Error: " << e.what() << endl;
 		}
+		std::cout << "\n\n";
 
 	}
+	std::cout << "\n\n";
+	{
+		unsigned short grade = 150;
+		try {
+			Bureaucrat another("patata vizcaina", grade);
+			another.decrementGrade();
+		}
+		catch (const std::exception &e) {
+			cerr << "Error: " << e.what() << endl;
+		}
+	}
+	std::cout << "\n\n";
 	{
 		unsigned short grade = 20;
 		try {
@@ -53,8 +60,8 @@ int main(void) {
 		catch (const std::exception &e) {
 			cerr << "Error: " << e.what() << endl;
 		}
-
 	}
+	std::cout << "\n\n";
 	{
 		unsigned short grade = -1;
 		try {
@@ -63,8 +70,8 @@ int main(void) {
 		catch (const std::exception &e) {
 			cerr << "Error creating bureuacrat: " << e.what() << endl;
 		}
-
 	}
+	std::cout << "\n\n";
 	cout << "============LEAKS============\n";
     system("leaks -quiet Bureaucrat");
 }
