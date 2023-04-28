@@ -40,6 +40,7 @@ public:
 
 	Bureaucrat const operator=(Bureaucrat const &obj); // Assigment operator
 
+	static void 	checkGrade(const u_int16_t &grade);
 	void			incrementGrade(void);
 	void 			decrementGrade(void);
     const string	getName(void) const;
