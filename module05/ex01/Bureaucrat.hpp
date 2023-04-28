@@ -3,16 +3,20 @@
 
 # include <string.h>
 # include <iostream>
+# include "Form.hpp"
 
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
 
 # define DEFAULT_NAME "Default bureaucrat"
 
+
 using std::string;
 using std::cout;
 using std::endl;
 using std::cerr;
+
+class Form;
 
 class Bureaucrat {
 private:
@@ -40,6 +44,8 @@ public:
 
 	Bureaucrat const operator=(Bureaucrat const &obj); // Assigment operator
 
+	bool			signForm(Form &form);
+	static void 	checkGrade(const u_int16_t &grade);
 	void			incrementGrade(void);
 	void 			decrementGrade(void);
     const string	getName(void) const;

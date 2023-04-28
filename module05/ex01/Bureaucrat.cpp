@@ -5,10 +5,7 @@ Bureaucrat::Bureaucrat():_name(DEFAULT_NAME), _grade(LOWEST_GRADE) {
 }
 
 Bureaucrat::Bureaucrat(const string &name, unsigned short grade):_name(name), _grade(grade) {
-	if (grade > LOWEST_GRADE)
-		throw (Bureaucrat::GradeTooHighException());
-	if (grade < HIGHEST_GRADE)
-		throw (Bureaucrat::GradeTooLowException());
+	checkGrade(grade);
 	cout << "Bureaucrat named: " << _name << " with grade: " << _grade << " created\n";
 }
 
@@ -32,26 +29,34 @@ std::ostream  &operator<<(std::ostream &os, const Bureaucrat &obj) {
 	return (os);
 }
 
-void Bureaucrat::decrementGrade() {
-	if (_grade - 1 > LOWEST_GRADE)
+void Bureaucrat::checkGrade(const u_int16_t &grade) {
+	if (grade > LOWEST_GRADE)
 		throw (Bureaucrat::GradeTooHighException());
-	if (_grade - 1 < HIGHEST_GRADE)
+	if (grade < HIGHEST_GRADE)
 		throw (Bureaucrat::GradeTooLowException());
-	cout << _name << " grade: " << _grade << " -> " << _grade - 1 << "\n";
-	_grade--;
+}
+
+
+void Bureaucrat::decrementGrade() {
+
+	checkGrade(_grade + 1);
+
+	cout << _name << " grade: " << _grade << " -> " << _grade + 1 << "\n";
+
+	_grade++;
 }
 
 void Bureaucrat::incrementGrade() {
-	if (_grade + 1 > LOWEST_GRADE)
-		throw (Bureaucrat::GradeTooHighException());
-	if (_grade + 1 < HIGHEST_GRADE)
-		throw (Bureaucrat::GradeTooLowException());
-	cout << _name << " grade: " << _grade << " -> " << _grade + 1 << "\n";
-	_grade++;
-	if (_grade > LOWEST_GRADE)
-		throw (Bureaucrat::GradeTooHighException());
-	if (_grade < HIGHEST_GRADE)
-		throw (Bureaucrat::GradeTooLowException());
+	checkGrade(_grade - 1);
+
+	cout << _name << " grade: " << _grade << " -> " << _grade - 1 << "\n";
+
+	_grade--;
+
+}
+
+bool Bureaucrat::signForm(Form &form) {
+	return (form.beSigned(*this));
 }
 
 unsigned short Bureaucrat::getGrade() const { return(this->_grade); }

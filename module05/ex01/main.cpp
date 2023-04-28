@@ -1,70 +1,62 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void) {
+
 	{
-		unsigned short grade = 0;
 		try {
-			Bureaucrat another("bob", grade);
+
+			Form form;
+
+			cout << form;
+
+			Form form2("Articulo 66 sobre la cultivacion de las patatas alavesas", true, 5, 10);
+
+			cout << form2;
+
+			form = form2;
+
+			cout << form2;
+
+			Form form3(form2);
+
+			cout << form3;
+
+			Form form4("Articulo 66 sobre la cultivacion de las patatas alavesas", true, 0, 10);
+			Form form5("Articulo 66 sobre la cultivacion de las patatas alavesas", true, 150, 0);
+			Form form6("Articulo 66 sobre la cultivacion de las patatas alavesas", true, 151, 0);
+
 		}
 		catch (const std::exception &e) {
-			cerr << "Error creating bureuacrat: " << e.what() << endl;
+			cout << "Error: " << e.what() << endl;
 		}
-
 	}
+	cout << "\n\n";
 	{
-		unsigned short grade = 151;
 		try {
-			Bureaucrat another("bob", grade);
+			Bureaucrat bobTheSigner("bob-potato-signer", 20);
+			Form form("Super duper potato", false, 19, 20);
+			bobTheSigner.signForm(form);
 		}
 		catch (const std::exception &e) {
-			cerr << "Error creating bureuacrat: " << e.what() << endl;
+			std::cout << "Error: " << e.what() << endl;
 		}
-
 	}
+	cout << "\n\n";
 	{
-		unsigned short grade = 1;
 		try {
-			Bureaucrat another("bob", grade);
-			another.decrementGrade();
+			Bureaucrat bobTheSigner("bob-potato-signer", 20);
+			Form form("Super duper potato", false, 21, 20);
+			form.beSigned(bobTheSigner);
 		}
 		catch (const std::exception &e) {
-			cerr << "Error: " << e.what() << endl;
+			std::cout << "Error: " << e.what() << endl;
 		}
-
 	}
-	{
-		unsigned short grade = 150;
-		try {
-			Bureaucrat another("bob", grade);
-			another.incrementGrade();
-		}
-		catch (const std::exception &e) {
-			cerr << "Error: " << e.what() << endl;
-		}
+	cout << "\n\n";
 
-	}
-	{
-		unsigned short grade = 20;
-		try {
-			Bureaucrat another("bob", grade);
-			another.incrementGrade();
-			another.decrementGrade();
-		}
-		catch (const std::exception &e) {
-			cerr << "Error: " << e.what() << endl;
-		}
 
-	}
-	{
-		unsigned short grade = -1;
-		try {
-			Bureaucrat another("bob", grade);
-		}
-		catch (const std::exception &e) {
-			cerr << "Error creating bureuacrat: " << e.what() << endl;
-		}
 
-	}
 	cout << "============LEAKS============\n";
     system("leaks -quiet Bureaucrat");
 }
