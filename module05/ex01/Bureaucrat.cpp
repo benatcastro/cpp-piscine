@@ -56,6 +56,10 @@ void Bureaucrat::incrementGrade() {
 }
 
 bool Bureaucrat::signForm(Form &form) {
+    if (this->_grade > form.getSignGrade()) {
+        cout << *this << " couldn't sign " << form << " because bureaucrat's grade is not enough\n";
+        throw (Bureaucrat::GradeTooLowException());
+    }
 	return (form.beSigned(*this));
 }
 

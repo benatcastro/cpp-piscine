@@ -16,8 +16,8 @@ Form::Form(const Form &obj):_name(obj._name), _signed(obj._signed), _signGrade(o
 }
 
 Form::Form(
-		const std::string &name, bool isSigned, const unsigned short &signGrade, const unsigned short &executeGrade
-		):_name(name),_signed(isSigned), _signGrade(signGrade), _executeGrade(executeGrade) {
+		const std::string &name, const unsigned short &signGrade, const unsigned short &executeGrade
+		):_name(name),_signed(false), _signGrade(signGrade), _executeGrade(executeGrade) {
 
 	Form::checkGrade(_signGrade);
 	Form::checkGrade(_executeGrade);
@@ -56,22 +56,21 @@ std::ostream& operator<<(std::ostream& os, const Form& obj) {
 	os		<< "Form name: " << obj.getName()
 			<< " signed: " << obj.getSign()
 			<< " sign grade: " << obj.getSignGrade()
-			<< " execute grade: " << obj.getExecuteGrade()
-			<< endl;
+			<< " execute grade: " << obj.getExecuteGrade();
 	return (os);
 }
 
 bool Form::beSigned(const Bureaucrat &bureaucrat) {
-	if (bureaucrat.getGrade() > _signGrade)
-		throw (Form::GradeTooLowException());
+	if (bureaucrat.getGrade() > _signGrade) {
+        throw (Form::GradeTooLowException());
+    }
 	if (bureaucrat.getGrade() <= _signGrade) {
 
-		cout << bureaucrat << " signed " << *this;
+		cout << bureaucrat << " signed form -> ";
 		_signed = true;
-		return (_signed);
+        cout << *this;
 	}
 
-	cout << bureaucrat << " can't sign " << *this;
 	return (_signed);
 }
 

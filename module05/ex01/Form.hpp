@@ -27,7 +27,7 @@ private:
 public:
 	Form();
 	Form(const Form &obj);
-	Form(const string &name, bool isSigned, const unsigned short &signGrade, const unsigned short &executeGrade);
+	Form(const string &name, const unsigned short &signGrade, const unsigned short &executeGrade);
 
 	~Form();
 
