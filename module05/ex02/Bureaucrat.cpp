@@ -56,10 +56,11 @@ void Bureaucrat::incrementGrade() {
 }
 
 bool Bureaucrat::signForm(AForm &form) {
-	// Todo
-	(void)form;
-//	return (form.beSigned(*this));
-	return (false);
+    if (this->_grade > form.getSignGrade()) {
+        cout << *this << " couldn't sign " << form << " because bureaucrat's grade is not enough\n";
+        throw (Bureaucrat::GradeTooLowException());
+    }
+	return (form.beSigned(*this));
 }
 
 unsigned short Bureaucrat::getGrade() const { return(this->_grade); }

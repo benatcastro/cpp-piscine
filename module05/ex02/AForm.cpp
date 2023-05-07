@@ -16,8 +16,11 @@ AForm::AForm(const AForm &obj):_name(obj._name), _signed(obj._signed), _signGrad
 }
 
 AForm::AForm(
-		const std::string &name, bool isSigned, const unsigned short &signGrade, const unsigned short &executeGrade
-		):_name(name),_signed(isSigned), _signGrade(signGrade), _executeGrade(executeGrade) {
+		const std::string &name, const unsigned short &signGrade, const unsigned short &executeGrade
+		):_name(name),_signed(false), _signGrade(signGrade), _executeGrade(executeGrade) {
+
+	AForm::checkGrade(_signGrade);
+	AForm::checkGrade(_executeGrade);
 
 	cout	<< "Form created with name: " << _name
 			<< " signed: " << _signed
@@ -27,54 +30,62 @@ AForm::AForm(
 
 }
 
-const AForm AForm::operator=(const AForm &obj) {
-
-	cout << "Form assignment operator called\n";
-
-	_signed = obj._signed;
-
-	return (*this);
-}
 
 AForm::~AForm() {
 	cout << "Form default destructor called\n";
 }
 
-//void AForm::checkGrade(const u_int16_t grade) {
-//	if (grade > LOWEST_GRADE)
-//		throw (Form::GradeTooHighException());
-//	if (grade < HIGHEST_GRADE)
-//		throw (Form::GradeTooLowException());
-//
-//}
+bool AForm::canExecute(const Bureaucrat &executor) const {
+
+    if (!this->_signed) {
+
+        throw (AForm::CantExecuteException());
+    }
+   if (executor.getGrade() > this->_executeGrade) {
+
+       throw (AForm::CantExecuteException());
+   }
+
+   return (true);
+
+}
+
+void AForm::checkGrade(const u_int16_t grade) {
+	if (grade > LOWEST_GRADE)
+		throw (AForm::GradeTooHighException());
+	if (grade < HIGHEST_GRADE)
+		throw (AForm::GradeTooLowException());
+
+}
 
 std::ostream& operator<<(std::ostream& os, const AForm& obj) {
 
 	os		<< "Form name: " << obj.getName()
 			<< " signed: " << obj.getSign()
 			<< " sign grade: " << obj.getSignGrade()
-			<< " execute grade: " << obj.getExecuteGrade()
-			<< endl;
+			<< " execute grade: " << obj.getExecuteGrade();
 	return (os);
 }
 
-//bool AForm::beSigned(const Bureaucrat &bureaucrat) {
-//	if (bureaucrat.getGrade() > _signGrade)
-//		throw (Form::GradeTooLowException());
-//	if (bureaucrat.getGrade() <= _signGrade) {
-//
-//		cout << bureaucrat << " signed " << *this;
-//		_signed = true;
-//		return (_signed);
-//	}
-//
-//	cout << bureaucrat << " can't sign " << *this;
-//	return (_signed);
-//}
+bool AForm::beSigned(const Bureaucrat &bureaucrat) {
+	if (bureaucrat.getGrade() > _signGrade) {
+        throw (AForm::GradeTooLowException());
+    }
+	if (bureaucrat.getGrade() <= _signGrade) {
+
+        _signed = true;
+		cout << bureaucrat << " signed form -> " << *this << endl;
+	}
+
+	return (_signed);
+}
+
 
 AForm::GradeTooHighException::GradeTooHighException(): std::invalid_argument("Form || grade must be lower") {}
 
 AForm::GradeTooLowException::GradeTooLowException(): std::invalid_argument("Form || grade must be higher") {}
+
+AForm::CantExecuteException::CantExecuteException(): std::invalid_argument("form cannot be executed, not signed or bureaucrat doesnt have enough grade") {}
 
 string AForm::getName() const { return (_name); }
 

@@ -29,6 +29,7 @@ int main(void) {
 			Bureaucrat another("patata alavesa", grade);
 			another.decrementGrade();
 			another.incrementGrade();
+			cout << another << endl;
 			another.incrementGrade();
 			another.incrementGrade();
 		}
@@ -43,6 +44,7 @@ int main(void) {
 		unsigned short grade = 150;
 		try {
 			Bureaucrat another("patata vizcaina", grade);
+			cout << another << endl;
 			another.decrementGrade();
 		}
 		catch (const std::exception &e) {
@@ -54,6 +56,7 @@ int main(void) {
 		unsigned short grade = 20;
 		try {
 			Bureaucrat another("bob", grade);
+			cout << another << endl;
 			another.incrementGrade();
 			another.decrementGrade();
 		}

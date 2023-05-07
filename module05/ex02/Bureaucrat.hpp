@@ -44,6 +44,7 @@ public:
 
 	Bureaucrat const operator=(Bureaucrat const &obj); // Assigment operator
 
+    void            executeForm(AForm const &form) const;
 	bool			signForm(AForm &form);
 	static void 	checkGrade(const u_int16_t &grade);
 	void			incrementGrade(void);
