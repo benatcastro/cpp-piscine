@@ -41,8 +41,6 @@ void ShruberryCreationForm::execute(const Bureaucrat &executor) const {
                 "\n"
                 "";
 
-
-
 }
 
 ShruberryCreationForm &ShruberryCreationForm::operator=(const ShruberryCreationForm __unused &obj) {

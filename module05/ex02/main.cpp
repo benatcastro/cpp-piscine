@@ -7,10 +7,18 @@ int main(void) {
     ShruberryCreationForm scf;
     Bureaucrat executor("test", 20);
 
-    executor.signForm(scf);
-    scf.execute(executor);
+//    executor.signForm(scf);
+//	cout << scf << endl;
+//    scf.execute(executor);
 
+	try {
 
-	cout << "============LEAKS============\n";
+		executor.executeForm(scf);
+	}
+	catch (std::exception &e) {
+		cout << "Error: " << e.what()  << endl;
+	}
+
+	cout << "\n\n============LEAKS============\n";
     system("leaks -quiet ex02");
 }

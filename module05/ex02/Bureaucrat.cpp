@@ -55,6 +55,12 @@ void Bureaucrat::incrementGrade() {
 
 }
 
+void Bureaucrat::executeForm(const AForm &form) const {
+	form.execute(*this);
+
+	cout << *this << "executed " << form << endl;
+}
+
 bool Bureaucrat::signForm(AForm &form) {
     if (this->_grade > form.getSignGrade()) {
         cout << *this << " couldn't sign " << form << " because bureaucrat's grade is not enough\n";
