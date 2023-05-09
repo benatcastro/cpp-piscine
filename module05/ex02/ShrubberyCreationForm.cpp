@@ -14,6 +14,16 @@ ShruberryCreationForm::ShruberryCreationForm(string const &target):
 
 }
 
+ShruberryCreationForm::ShruberryCreationForm(const ShruberryCreationForm &obj): AForm(obj._name, obj._signGrade, obj._executeGrade, obj._target) {
+	cout << "Shruberry creation form copied\n";
+}
+
+ShruberryCreationForm &ShruberryCreationForm::operator=(const ShruberryCreationForm &obj) {
+	this->_target = obj._target;
+
+	return (*this);
+}
+
 ShruberryCreationForm::~ShruberryCreationForm() {
     cout << "Shruberry creation form destructed\n";
 }
