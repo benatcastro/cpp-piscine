@@ -3,13 +3,13 @@
 
 
 ShruberryCreationForm::ShruberryCreationForm():
-        AForm("Shruberry Creation Form", SIGN_GRADE, EXEC_GRADE), _target("DEFAULT TARGET") {
+        AForm("Shruberry Creation Form", ShruberryCreationForm::_sign_grade, ShruberryCreationForm::_exec_grade, "DEFAULT_TARGET"){
    cout << "Shruberry creation form constructed with default target\n";
 
 }
 
 ShruberryCreationForm::ShruberryCreationForm(string const &target):
-        AForm("Shruberry Creation Form", SIGN_GRADE, EXEC_GRADE), _target(target) {
+        AForm("Shruberry Creation Form", ShruberryCreationForm::_sign_grade, ShruberryCreationForm::_exec_grade, target) {
     cout << "Shruberry creation form constructed with target: " + target + "\n";
 
 }
@@ -23,7 +23,8 @@ void ShruberryCreationForm::execute(const Bureaucrat &executor) const {
 
     std::ofstream outfile(_target + "_shruberry");
 
-     outfile << "ASCII trees\n"<<
+     outfile	<< "ASCII trees\n"
+	 			<<
                 "                                 # #### ####\n"
                 "                                ### \\/#|### |/####\n"
                 "                               ##\\/#/ \\||/##/_/##/_#\n"

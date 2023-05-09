@@ -5,19 +5,19 @@
 
 
 // Default constructor
-AForm::AForm():_name(DEFAULT_FORM_NAME), _signed(false), _signGrade(DEFAULT_SIGN_GRADE), _executeGrade(DEFAULT_EXECUTE_GRADE) {
+AForm::AForm():_target("DEFAULT TARGT"), _name(DEFAULT_FORM_NAME), _signed(false), _signGrade(DEFAULT_SIGN_GRADE), _executeGrade(DEFAULT_EXECUTE_GRADE) {
 
 	cout << "Default form constructor called\n";
 }
 
-AForm::AForm(const AForm &obj):_name(obj._name), _signed(obj._signed), _signGrade(obj._signGrade), _executeGrade(obj._executeGrade) {
+AForm::AForm(const AForm &obj):_target(obj._target), _name(obj._name),  _signed(obj._signed), _signGrade(obj._signGrade), _executeGrade(obj._executeGrade) {
 
 	cout << "Form copy constructor called\n";
 }
 
 AForm::AForm(
-		const std::string &name, const unsigned short &signGrade, const unsigned short &executeGrade
-		):_name(name),_signed(false), _signGrade(signGrade), _executeGrade(executeGrade) {
+		const std::string &name, const unsigned short &signGrade, const unsigned short &executeGrade, string target
+		):_target(target), _name(name),_signed(false), _signGrade(signGrade), _executeGrade(executeGrade) {
 
 	AForm::checkGrade(_signGrade);
 	AForm::checkGrade(_executeGrade);

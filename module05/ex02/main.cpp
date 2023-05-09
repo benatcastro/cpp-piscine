@@ -1,22 +1,20 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main(void) {
 
+	{
+		RobotomyRequestForm rrq("paco");
+		Bureaucrat executor("bob", 20);
 
-    ShruberryCreationForm scf;
-    Bureaucrat executor("test", 20);
-
-//    executor.signForm(scf);
-//	cout << scf << endl;
-//    scf.execute(executor);
-
-	try {
-
-		executor.executeForm(scf);
-	}
-	catch (std::exception &e) {
-		cout << "Error: " << e.what()  << endl;
+		try {
+			rrq.beSigned(executor);
+			executor.executeForm(rrq);
+		}
+		catch (std::exception &e) {
+			cout << "Error: " <<  e.what() << endl;
+		}
 	}
 
 	cout << "\n\n============LEAKS============\n";

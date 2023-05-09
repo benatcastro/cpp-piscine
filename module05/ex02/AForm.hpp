@@ -19,6 +19,7 @@ class Bureaucrat;
 
 class AForm {
 protected:
+	const string				_target;
 	const string 				_name;
 	bool 						_signed;
 	const unsigned short		_signGrade;
@@ -27,7 +28,7 @@ protected:
 public:
 	AForm();
 	AForm(const AForm &obj);
-	AForm(const string &name, const unsigned short &signGrade, const unsigned short &executeGrade);
+	AForm(const string &name, const unsigned short &signGrade, const unsigned short &executeGrade, string target);
 
 	~AForm();
 

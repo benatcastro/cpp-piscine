@@ -3,13 +3,10 @@
 
 # include "AForm.hpp"
 
-# define SIGN_GRADE 145
-# define EXEC_GRADE 137
-
 class ShruberryCreationForm: public AForm {
-
 private:
-    string const _target;
+	static const u_int8_t _sign_grade = 145;
+	static const u_int8_t _exec_grade = 137;
 
 public:
     ShruberryCreationForm();
