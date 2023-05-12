@@ -19,7 +19,8 @@ ShruberryCreationForm::ShruberryCreationForm(const ShruberryCreationForm &obj): 
 }
 
 ShruberryCreationForm &ShruberryCreationForm::operator=(const ShruberryCreationForm &obj) {
-	this->_target = obj._target;
+    (string)this->_target = (string)obj._target;
+    (string)this->_name = (string)obj._name;
 
 	return (*this);
 }
@@ -52,8 +53,4 @@ void ShruberryCreationForm::execute(const Bureaucrat &executor) const {
                 "\n"
                 "";
 
-}
-
-ShruberryCreationForm &ShruberryCreationForm::operator=(const ShruberryCreationForm __unused &obj) {
-    return *this;
 }

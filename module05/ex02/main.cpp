@@ -6,14 +6,16 @@ int main(void) {
 
 	{
 		RobotomyRequestForm rrq("paco");
-		Bureaucrat executor("bob", 20);
+		Bureaucrat executor("bob", 46);
 
+        rrq.beSigned(executor);
+        executor.executeForm(rrq);
 		try {
-			rrq.beSigned(executor);
 			executor.executeForm(rrq);
+//            rrq.execute(executor);
 		}
 		catch (std::exception &e) {
-			cout << "Error: " <<  e.what() << endl;
+			cout << "Exception: " <<  e.what() << endl;
 		}
 	}
 

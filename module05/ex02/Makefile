@@ -20,7 +20,7 @@ ECHO		=	echo
 
 #.SILENT:
 
-all: $(NAME) $(NAME_SANI)
+all: $(NAME) #$(NAME_SANI)
 
 $(NAME_SANI): $(OBJS_SANI)
 	$(CXX) $(CXXFLAGS) $(SANI_FLAG) $(OBJS) -I $(PCHDIR) -o $(NAME_SANI)

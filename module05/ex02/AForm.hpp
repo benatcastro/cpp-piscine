@@ -25,6 +25,9 @@ protected:
 	const unsigned short		_signGrade;
 	const unsigned short		_executeGrade;
 
+
+    bool            canExecute(Bureaucrat const &executor) const;
+
 public:
 	AForm();
 	AForm(const AForm &obj);
@@ -34,7 +37,6 @@ public:
 
 //	virtual AForm& operator=(const AForm &obj) = 0;
 
-    bool            canExecute(Bureaucrat const &executor) const;
     virtual void    execute(Bureaucrat const &executor) const = 0;
 	void 		    checkGrade(const u_int16_t grade);
 	bool		    beSigned(const Bureaucrat &bureaucrat);

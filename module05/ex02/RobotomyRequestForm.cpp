@@ -19,8 +19,8 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj):
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &obj) {
-	this->_name = obj._name;
-	this->_target = obj._target;
+    (string)this->_name = (string)obj._name;
+    (string)this->_target = (string)obj._target;
 
 	return (*this);
 }

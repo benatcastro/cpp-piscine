@@ -22,6 +22,8 @@ class Bureaucrat {
 private:
     const string	_name;
     unsigned short	_grade; // Grade between 1 - 150 1 -> highest | 150 -> lowest
+    bool            canExecute(AForm const &form) const;
+	bool            canSign(AForm const &form) const;
 
 public:
 

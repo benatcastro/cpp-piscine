@@ -55,22 +55,36 @@ void Bureaucrat::incrementGrade() {
 
 }
 
-void Bureaucrat::executeForm(const AForm &form) const {
+void Bureaucrat::executeForm(AForm const &form) const {
 
-	if (!form.getSign() || this->_grade > form.getExecuteGrade())
-		cout << *this << " can't execute the form " << form.getName() << endl;
-
+    if (!Bureaucrat::canExecute(form))
+        return;
 	form.execute(*this);
 
 	cout << *this << " executed " << form << endl;
 }
 
 bool Bureaucrat::signForm(AForm &form) {
-    if (this->_grade > form.getSignGrade()) {
-        cout << *this << " couldn't sign " << form << " because bureaucrat's grade is not enough\n";
-        throw (Bureaucrat::GradeTooLowException());
-    }
+	if (!Bureaucrat::canSign(form))
+		return (false);
 	return (form.beSigned(*this));
+}
+
+bool Bureaucrat::canSign(const AForm &form) const {
+	if (form.getSign() == false)
+		return (cout << this->_name << " can't execute form: " << form.getName() << " because is not signed\n", false);
+	if (form.getSignGrade() < this->_grade)
+		return (cout << this->_name << " cat't sign form: " << form.getName() << " because his grade is too low\n", false);
+	return (true);
+
+}
+
+bool Bureaucrat::canExecute(AForm const &form) const {
+    if (form.getSign() == false)
+        return (cout << this->_name << " can't execute form: " << form.getName() << " because is not signed\n", false);
+    if (form.getExecuteGrade() < this->_grade)
+        return (cout << this->_name << " cat't execute form: " << form.getName() << " because his grade is too low\n", false);
+    return (true);
 }
 
 unsigned short Bureaucrat::getGrade() const { return(this->_grade); }
