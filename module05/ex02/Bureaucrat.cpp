@@ -59,9 +59,9 @@ void Bureaucrat::executeForm(AForm const &form) const {
 
     if (!Bureaucrat::canExecute(form))
         return;
+	cout << *this << " executed " << form << endl;
 	form.execute(*this);
 
-	cout << *this << " executed " << form << endl;
 }
 
 bool Bureaucrat::signForm(AForm &form) {
@@ -71,10 +71,8 @@ bool Bureaucrat::signForm(AForm &form) {
 }
 
 bool Bureaucrat::canSign(const AForm &form) const {
-	if (form.getSign() == false)
-		return (cout << this->_name << " can't execute form: " << form.getName() << " because is not signed\n", false);
 	if (form.getSignGrade() < this->_grade)
-		return (cout << this->_name << " cat't sign form: " << form.getName() << " because his grade is too low\n", false);
+		return (cout << this->_name << " cant't sign form: " << form.getName() << " because his grade is too low\n", false);
 	return (true);
 
 }

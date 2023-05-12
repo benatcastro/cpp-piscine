@@ -33,7 +33,7 @@ public:
 	AForm(const AForm &obj);
 	AForm(const string &name, const unsigned short &signGrade, const unsigned short &executeGrade, string target);
 
-	~AForm();
+	virtual ~AForm();
 
 //	virtual AForm& operator=(const AForm &obj) = 0;
 
@@ -61,7 +61,6 @@ public:
 };
 
 };
-
 std::ostream& operator<<(std::ostream& os, const AForm& obj);
 
 #endif

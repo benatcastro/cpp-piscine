@@ -19,6 +19,10 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj
 	cout << "Presidential pardon form copied\n";
 }
 
+PresidentialPardonForm::~PresidentialPardonForm() {
+	cout << "Presidential Pardon Form destructed\n";
+}
+
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &obj) {
     (string)this->_target = (string)obj._target;
     (string)this->_name = (string)obj._name;

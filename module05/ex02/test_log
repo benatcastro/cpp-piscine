@@ -1,0 +1,151 @@
+./ex02
+ROBOTOMY REQUEST TETS
+Form created with name: Robotomy Request form signed: 0 sign grade: 72 execute grade: 45
+Robotomy request form constructed with target: paco
+Bureaucrat named: bob with grade: 10 created
+Bureaucrat named: bob with grade: 150 created
+====Test n:1=====
+Exception: Form || grade must be higher
+
+
+=====================
+
+====Test n:2=====
+Exception: form cannot be executed, not signed or bureaucrat doesnt have enough grade
+
+
+=====================
+
+====Test n:3=====
+Bureaucrat bob, grade 10 signed form -> Form name: Robotomy Request form signed: 1 sign grade: 72 execute grade: 45
+Drilling noises....
+paco robotomized succesfully!
+Bureaucrat default destructor called
+Bureaucrat default destructor called
+Robotomy request form destructed
+Form default destructor called
+Form created with name: Robotomy Request form signed: 0 sign grade: 72 execute grade: 45
+Robotomy request form constructed with target: paco
+Bureaucrat named: bob with grade: 10 created
+Bureaucrat named: bob with grade: 150 created
+====Test n:4=====
+bob cant't sign form: Robotomy Request form because his grade is too low
+
+
+=====================
+
+====Test n:5=====
+bob can't execute form: Robotomy Request form because is not signed
+
+
+=====================
+
+====Test n:6=====
+Bureaucrat bob, grade 10 signed form -> Form name: Robotomy Request form signed: 1 sign grade: 72 execute grade: 45
+Bureaucrat bob, grade 10 executed Form name: Robotomy Request form signed: 1 sign grade: 72 execute grade: 45
+Drilling noises....
+paco robotomized succesfully!
+Bureaucrat default destructor called
+Bureaucrat default destructor called
+Robotomy request form destructed
+Form default destructor called
+PRESIDENTIAL REQUEST TETS
+Form created with name: Presidental Pardon form signed: 0 sign grade: 25 execute grade: 5
+Presidential pardon request constructed with target: paco
+Bureaucrat named: bob with grade: 10 created
+Bureaucrat named: bob with grade: 150 created
+====Test n:1=====
+Exception: Form || grade must be higher
+
+
+=====================
+
+====Test n:2=====
+Exception: form cannot be executed, not signed or bureaucrat doesnt have enough grade
+
+
+=====================
+
+====Test n:3=====
+Bureaucrat bob, grade 10 signed form -> Form name: Presidental Pardon form signed: 1 sign grade: 25 execute grade: 5
+Exception: form cannot be executed, not signed or bureaucrat doesnt have enough grade
+Bureaucrat default destructor called
+Bureaucrat default destructor called
+Presidential Pardon Form destructed
+Form default destructor called
+Form created with name: Presidental Pardon form signed: 0 sign grade: 25 execute grade: 5
+Presidential pardon request constructed with target: paco
+Bureaucrat named: bob with grade: 10 created
+Bureaucrat named: bob with grade: 150 created
+====Test n:4=====
+bob cant't sign form: Presidental Pardon form because his grade is too low
+
+
+=====================
+
+====Test n:5=====
+bob can't execute form: Presidental Pardon form because is not signed
+
+
+=====================
+
+====Test n:6=====
+Bureaucrat bob, grade 10 signed form -> Form name: Presidental Pardon form signed: 1 sign grade: 25 execute grade: 5
+bob cat't execute form: Presidental Pardon form because his grade is too low
+Bureaucrat default destructor called
+Bureaucrat default destructor called
+Presidential Pardon Form destructed
+Form default destructor called
+SHRUBERRY REQUEST TETS
+Form created with name: Shruberry Creation Form signed: 0 sign grade: 145 execute grade: 137
+Shruberry creation form constructed with target: paco
+Bureaucrat named: bob with grade: 10 created
+Bureaucrat named: bob with grade: 150 created
+====Test n:1=====
+Exception: Form || grade must be higher
+
+
+=====================
+
+====Test n:2=====
+Exception: form cannot be executed, not signed or bureaucrat doesnt have enough grade
+
+
+=====================
+
+====Test n:3=====
+Bureaucrat bob, grade 10 signed form -> Form name: Shruberry Creation Form signed: 1 sign grade: 145 execute grade: 137
+Bureaucrat default destructor called
+Bureaucrat default destructor called
+Shruberry creation form destructed
+Form default destructor called
+Form created with name: Shruberry Creation Form signed: 0 sign grade: 145 execute grade: 137
+Shruberry creation form constructed with target: paco
+Bureaucrat named: bob with grade: 10 created
+Bureaucrat named: bob with grade: 150 created
+====Test n:4=====
+bob cant't sign form: Shruberry Creation Form because his grade is too low
+
+
+=====================
+
+====Test n:5=====
+bob can't execute form: Shruberry Creation Form because is not signed
+
+
+=====================
+
+====Test n:6=====
+Bureaucrat bob, grade 10 signed form -> Form name: Shruberry Creation Form signed: 1 sign grade: 145 execute grade: 137
+Bureaucrat bob, grade 10 executed Form name: Shruberry Creation Form signed: 1 sign grade: 145 execute grade: 137
+leaks Report Version: 4.0
+Process 38561: 156 nodes malloced for 12 KB
+Process 38561: 0 leaks for 0 total leaked bytes.
+
+Bureaucrat default destructor called
+Bureaucrat default destructor called
+Shruberry creation form destructed
+Form default destructor called
+
+
+============LEAKS============
