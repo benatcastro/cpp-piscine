@@ -31,9 +31,9 @@ AForm::AForm(
 }
 
 
-//AForm::~AForm() {
-//	cout << "Form default destructor called\n";
-//}
+AForm::~AForm() {
+	cout << "Form default destructor called\n";
+}
 
 bool AForm::canExecute(const Bureaucrat &executor) const {
 
