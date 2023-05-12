@@ -67,6 +67,6 @@ unsigned short Bureaucrat::getGrade() const { return(this->_grade); }
 
 const string Bureaucrat::getName() const { return(this->_name); }
 
-Bureaucrat::GradeTooLowException::GradeTooLowException(): std::invalid_argument("grade must be higher than 1") {}
+Bureaucrat::GradeTooLowException::GradeTooLowException(): std::invalid_argument("grade must be higher") {}
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(): std::invalid_argument("grade must be lower than 150") {}
+Bureaucrat::GradeTooHighException::GradeTooHighException(): std::invalid_argument("grade must be lower") {}

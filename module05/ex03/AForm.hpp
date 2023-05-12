@@ -37,7 +37,7 @@ public:
 
 	virtual ~AForm();
 
-//	virtual AForm& operator=(const AForm &obj) = 0;
+	AForm& operator=(const AForm &obj);
 
 	virtual void execute(Bureaucrat const &executor) const = 0;
 

@@ -35,7 +35,7 @@ public:
 
 	virtual ~AForm();
 
-//	virtual AForm& operator=(const AForm &obj) = 0;
+	AForm& operator=(const AForm &obj);
 
     virtual void    execute(Bureaucrat const &executor) const = 0;
 	void 		    checkGrade(const u_int16_t grade);

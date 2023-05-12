@@ -33,6 +33,7 @@ int main(void) {
 	}
 	cout << "\n\n";
 	{
+
 		try {
 			Bureaucrat bobTheSigner("bob-potato-signer", 21);
 			Form form("Super duper potato", 20, 20);
