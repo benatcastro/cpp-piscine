@@ -19,46 +19,54 @@ class Bureaucrat;
 
 class AForm {
 protected:
-	const string				_target;
-	const string 				_name;
-	bool 						_signed;
-	const unsigned short		_signGrade;
-	const unsigned short		_executeGrade;
+	const string _target;
+	const string _name;
+	bool _signed;
+	const unsigned short _signGrade;
+	const unsigned short _executeGrade;
 
 
-    bool            canExecute(Bureaucrat const &executor) const;
+	bool canExecute(Bureaucrat const &executor) const;
 
 public:
 	AForm();
+
 	AForm(const AForm &obj);
+
 	AForm(const string &name, const unsigned short &signGrade, const unsigned short &executeGrade, string target);
 
 	virtual ~AForm();
 
 //	virtual AForm& operator=(const AForm &obj) = 0;
 
-    virtual void    execute(Bureaucrat const &executor) const = 0;
-	void 		    checkGrade(const u_int16_t grade);
-	bool		    beSigned(const Bureaucrat &bureaucrat);
-	string		    getName(void) const;
-	bool		    getSign(void) const;
-	u_int16_t 	    getSignGrade(void) const;
-	u_int16_t	    getExecuteGrade(void) const;
+	virtual void execute(Bureaucrat const &executor) const = 0;
 
-class GradeTooLowException: public std::invalid_argument {
-public:
-    GradeTooLowException();
-};
+	void checkGrade(const u_int16_t grade);
 
-class GradeTooHighException: public std::invalid_argument {
-public:
-    GradeTooHighException();
-};
+	bool beSigned(const Bureaucrat &bureaucrat);
 
-class CantExecuteException: public std::invalid_argument {
-public:
-    CantExecuteException();
-};
+	string getName(void) const;
+
+	bool getSign(void) const;
+
+	u_int16_t getSignGrade(void) const;
+
+	u_int16_t getExecuteGrade(void) const;
+
+	class GradeTooLowException : public std::invalid_argument {
+	public:
+		GradeTooLowException();
+	};
+
+	class GradeTooHighException : public std::invalid_argument {
+	public:
+		GradeTooHighException();
+	};
+
+	class CantExecuteException : public std::invalid_argument {
+	public:
+		CantExecuteException();
+	};
 
 };
 

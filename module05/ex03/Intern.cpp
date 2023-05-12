@@ -5,6 +5,7 @@
 Intern::Intern() { cout << "Intern constructed\n"; }
 
 Intern::Intern(const Intern __unused &obj) { cout << "Intern copy constructor called\n"; }
+
 Intern::~Intern() { cout << "Intern destructed\n"; }
 
 Intern &Intern::operator=(const Intern __unused &obj) { return (*this); }
@@ -22,21 +23,27 @@ int Intern::getFormIndex(const std::string formName) {
 			"RobotomyRequestForm",
 			"ShruberryCreationForm",
 			"PresidentialPardonForm"};
+
 	for (int i = 0; i < 3; i++)
 		if (formName == formNames[i])
 			return (i);
-	throw (NoMatchException("No match for: " + formName));
+	throw (NoMatchException("Intern failed to create " + formName));
 }
 
 AForm *Intern::makeForm(const std::string formName, const std::string formTarget) {
 	int idx;
+
+	const string formNames[] = {
+			"RobotomyRequestForm",
+			"ShruberryCreationForm",
+			"PresidentialPardonForm"};
 
 	AForm* (Intern::*createForm[])(const std::string) = {
 			&Intern::createRRF,
 			&Intern::createSCF,
 			&Intern::createPPF};
 	idx = getFormIndex(formName);
-
+	cout << "Intern created: " << formNames[idx] << endl;
 	return (this->*createForm[idx])(formTarget);
 
 }

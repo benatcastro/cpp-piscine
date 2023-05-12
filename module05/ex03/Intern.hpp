@@ -7,6 +7,8 @@
 #include "PresidentialPardonForm.hpp"
 
 class Intern {
+private:
+	const string formNames[3];
 
 public:
 	Intern();
