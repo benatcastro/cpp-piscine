@@ -3,6 +3,7 @@
 
 # include <cstring>
 # include <iostream>
+# include <cmath>
 
 # define NaN "nan"
 # define INF "inf"
@@ -24,12 +25,21 @@ public:
 		big_float,
 		small_int,
 		big_int,
-		infinite,
-		not_a_number
+		plus_infinite,
+		neg_infinite,
+		not_a_number,
+		not_found
 	};
-	static int16_t 		isNonLiteral(string const &arg, string const &nonLiteral);
-	static void 		converter(string const &arg);
-	static data_type	parser(string const &arg);
+
+public:
+	static void				print_int(string &arg, data_type type);
+	static void				print_double(string &arg, data_type type);
+	static void				print_float(string &arg, data_type type);
+	static void				print_char(string &arg, data_type type);
+	static data_type 		isInf(string &arg);
+	static data_type 		isNaN(string &arg);
+	static void 			converter(string &arg);
+	static data_type		parser(string &arg);
 
 };
 

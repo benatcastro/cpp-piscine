@@ -9,5 +9,11 @@ int main (int argc, char **argv)
 	if (argc != 2)
 		return (cout << USAGE_HELPER, 1);
 
-	ScalarConverter::parser(argv[1]);
+	string arg(argv[1]);
+	try {
+		ScalarConverter::converter(arg);
+	}
+	catch (std::exception &e) {
+		std::cerr << "Exception: " << e.what() << endl;
+	}
 }
