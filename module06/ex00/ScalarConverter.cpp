@@ -59,7 +59,7 @@ void ScalarConverter::print_char(std::string __unused &arg, ScalarConverter::dat
 	}
 //	cout << "c ->" << static_cast<int>(c) << endl;
 	if (!isprint(c))
-		cout << "Non displayable";
+		cout << "impossible";
 	else
 		cout << c;
 
@@ -69,8 +69,10 @@ void ScalarConverter::print_char(std::string __unused &arg, ScalarConverter::dat
 
 void ScalarConverter::print_int(std::string __unused &arg, ScalarConverter::data_type __unused type) {
 
-	cout << "int: ";
 	int i;
+
+	cout << "int: ";
+
 	try {
 		i = static_cast<int>(std::stoi(arg));
 	}
@@ -78,7 +80,7 @@ void ScalarConverter::print_int(std::string __unused &arg, ScalarConverter::data
 		if (type == not_a_number)
 			cout << "impossible";
 		else
-			cout << "Not displayable";
+			cout << "impossible";
 		cout << endl;
 		return ;
 	}
@@ -105,7 +107,7 @@ void ScalarConverter::print_float(std::string __unused &arg, ScalarConverter::da
 		else if (type == neg_infinite)
 			cout << "-inf";
 		else {
-			cout << "Non displayable" << endl;
+			cout << "impossible" << endl;
 			return;
 		}
 		cout << "f" << endl;
