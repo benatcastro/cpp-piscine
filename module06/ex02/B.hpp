@@ -7,6 +7,7 @@ class B: public Base {
 public:
 	B();
 	~B();
+	void dummy();
 };
 
 #endif

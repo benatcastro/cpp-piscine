@@ -5,3 +5,5 @@
 C::C() { std::cout << "C constructed\n"; }
 
 C::~C() { std::cout << "C destructed\n"; }
+
+void C::dummy() {}

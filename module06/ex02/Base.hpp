@@ -4,12 +4,13 @@
 class Base {
 public:
 	Base();
-	~Base();
+	virtual ~Base();
 
 
-	Base	*generate(void);
-	void	identify(Base *p);
-	void	identify(Base &p);
+	static Base		*generate(void);
+	static void		identify(Base *p);
+	static void		identify(Base &p);
+	virtual void	dummy() = 0;
 
 };
 
