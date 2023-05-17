@@ -7,6 +7,7 @@ ScalarConverter::~ScalarConverter() { cout << "Scalar converter destructed\n"; }
 
 ScalarConverter::data_type	ScalarConverter::isNaN(std::string &arg) { return ((arg.compare(NaN) == 0) ? not_a_number : not_found); }
 
+
 ScalarConverter::data_type	ScalarConverter::isInf(std::string &arg) {
 
 	if (!arg.compare(INF))
@@ -35,8 +36,10 @@ ScalarConverter::data_type ScalarConverter::parser(std::string &arg) {
 	rvalue = isInf(arg);
 	if (rvalue != not_found)
 		return rvalue;
+	if (isalpha(arg.at(0)) && arg.length() == 1)
+		return character;
 
-	return (big_float);
+	return (not_found);
 }
 
 
@@ -46,24 +49,23 @@ void ScalarConverter::print_char(std::string __unused &arg, ScalarConverter::dat
 
 	cout << "char: ";
 	try {
-		c = static_cast<char>(std::stoi(arg));
-
+//		cout  << "type -> " << type << endl;
+		if (type == character)
+			c = static_cast<int>(arg.at(0));
+		else
+			c = static_cast<char>(std::stoi(arg));
 	}
 	catch (std::exception &e) {
-		if (type == not_a_number)
-			cout << "impossible";
-		else
-			cout << "impossible";
-		cout << endl;
-		return ;
-	}
-//	cout << "c ->" << static_cast<int>(c) << endl;
-	if (!isprint(c))
 		cout << "impossible";
+		goto end;
+	}
+
+	if (!isprint(c))
+		cout << "Not displayable";
 	else
 		cout << c;
-
-	cout << endl;
+	end:
+		cout << endl;
 
 }
 
@@ -74,18 +76,18 @@ void ScalarConverter::print_int(std::string __unused &arg, ScalarConverter::data
 	cout << "int: ";
 
 	try {
-		i = static_cast<int>(std::stoi(arg));
+		if (type == character)
+			i = static_cast<int>(arg.at(0));
+		else
+			i = static_cast<int>(std::stoi(arg));
 	}
 	catch (std::exception &e) {
-		if (type == not_a_number)
-			cout << "impossible";
-		else
-			cout << "impossible";
-		cout << endl;
-		return ;
+		cout << "impossible";
+		goto end;
 	}
 	cout << i;
 
+	end:
 	cout << endl;
 }
 
@@ -97,7 +99,10 @@ void ScalarConverter::print_float(std::string __unused &arg, ScalarConverter::da
 	cout << "float: ";
 
 	try {
-		f = static_cast<float>(std::stof(arg));
+		if (type == character)
+			f = static_cast<float>(arg.at(0));
+		else
+			f = static_cast<float>(std::stof(arg));
 	}
 	catch (std::exception &e) {
 		if (type == not_a_number)
@@ -107,17 +112,16 @@ void ScalarConverter::print_float(std::string __unused &arg, ScalarConverter::da
 		else if (type == neg_infinite)
 			cout << "-inf";
 		else {
-			cout << "impossible" << endl;
-			return;
+			cout << "impossible ";
 		}
-		cout << "f" << endl;
-		return ;
+		goto end;
 	}
 
 	cout << f;
 	if ((f / std::round(f)) == 1 || !f)
 		cout << ".0";
-	cout << "f" << endl;
+	end:
+		cout << "f" << endl;
 }
 
 void ScalarConverter::print_double(std::string __unused &arg, ScalarConverter::data_type __unused type) {
@@ -127,7 +131,10 @@ void ScalarConverter::print_double(std::string __unused &arg, ScalarConverter::d
 	cout << "double: ";
 
 	try {
-		d = static_cast<double>(std::stod(arg));
+		if (type == character)
+			d = static_cast<double>(arg.at(0));
+		else
+			d = static_cast<double>(std::stod(arg));
 	}
 	catch (std::exception &e) {
 		if (type == not_a_number)
@@ -136,14 +143,14 @@ void ScalarConverter::print_double(std::string __unused &arg, ScalarConverter::d
 			cout << "+inf";
 		else if (type == neg_infinite)
 			cout << "-inf";
-		else {
-			cout << "Non displayable" << endl;
-			return;
-		}
+		else
+			cout << "Impossible ";
+		goto end;
 	}
 	cout << d;
 	if ((d / std::round(d) == 1) || !d)
 		cout << ".0";
+	end:
 	cout << "d" << endl;
 
 }

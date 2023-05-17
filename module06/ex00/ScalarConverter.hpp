@@ -4,6 +4,7 @@
 # include <cstring>
 # include <iostream>
 # include <cmath>
+# include <limits>
 
 # define NaN "nan"
 # define INF "inf"
@@ -21,10 +22,7 @@ private:
 
 public:
 	enum data_type {
-		small_float,
-		big_float,
-		small_int,
-		big_int,
+		character,
 		plus_infinite,
 		neg_infinite,
 		not_a_number,
