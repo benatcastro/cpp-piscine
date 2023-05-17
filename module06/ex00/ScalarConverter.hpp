@@ -22,6 +22,9 @@ private:
 
 public:
 	enum data_type {
+		floating_point,
+		double_float,
+		integer,
 		character,
 		plus_infinite,
 		neg_infinite,
@@ -30,6 +33,7 @@ public:
 	};
 
 public:
+	static bool				checkRange(string &arg, data_type type);
 	static void				print_int(string &arg, data_type type);
 	static void				print_double(string &arg, data_type type);
 	static void				print_float(string &arg, data_type type);

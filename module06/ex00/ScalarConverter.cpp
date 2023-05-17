@@ -7,6 +7,24 @@ ScalarConverter::~ScalarConverter() { cout << "Scalar converter destructed\n"; }
 
 ScalarConverter::data_type	ScalarConverter::isNaN(std::string &arg) { return ((arg.compare(NaN) == 0) ? not_a_number : not_found); }
 
+bool ScalarConverter::checkRange(std::string &arg, ScalarConverter::data_type type) {
+
+	long double n;
+
+	n = std::stold(arg);
+	switch (type) {
+		case character:
+			return (n > std::numeric_limits<char>::max() || n < std::numeric_limits<char>::min() ? false : true);
+		case double_float:
+			return (n > std::numeric_limits<double>::max() || n < std::numeric_limits<double>::lowest() ? false : true);
+		case floating_point:
+			return (n > std::numeric_limits<float>::max() || n < std::numeric_limits<float>::lowest() ? false : true);
+		case integer:
+			return (n > std::numeric_limits<int>::max() || n < std::numeric_limits<int>::min() ? false : true);
+		default:
+			return (false);
+	}
+}
 
 ScalarConverter::data_type	ScalarConverter::isInf(std::string &arg) {
 
@@ -21,12 +39,8 @@ ScalarConverter::data_type	ScalarConverter::isInf(std::string &arg) {
 
 ScalarConverter::data_type ScalarConverter::parser(std::string &arg) {
 
-	// Decapitalize string for so its not case sensitive anymore
-
 	for (string::iterator it = arg.begin(); it != arg.end(); it++)
 		*it = tolower(*it);
-
-	// Checks for non literals (NaN, +inf, -inf)
 
 	data_type rvalue;
 
@@ -45,12 +59,15 @@ ScalarConverter::data_type ScalarConverter::parser(std::string &arg) {
 
 void ScalarConverter::print_char(std::string __unused &arg, ScalarConverter::data_type __unused type) {
 
-	char c;
+	char c = {0};
 
 	cout << "char: ";
 	try {
-//		cout  << "type -> " << type << endl;
-		if (type == character)
+		if (!checkRange(arg, character) && type != plus_infinite && type != neg_infinite) {
+			cout << "impossible";
+			goto end;
+		}
+		else if (type == character)
 			c = static_cast<int>(arg.at(0));
 		else
 			c = static_cast<char>(std::stoi(arg));
@@ -71,11 +88,15 @@ void ScalarConverter::print_char(std::string __unused &arg, ScalarConverter::dat
 
 void ScalarConverter::print_int(std::string __unused &arg, ScalarConverter::data_type __unused type) {
 
-	int i;
+	int i = {0};
 
 	cout << "int: ";
 
 	try {
+		if (!checkRange(arg, integer) && type != plus_infinite && type != neg_infinite) {
+			cout << "impossible";
+			goto end;
+		}
 		if (type == character)
 			i = static_cast<int>(arg.at(0));
 		else
@@ -91,14 +112,17 @@ void ScalarConverter::print_int(std::string __unused &arg, ScalarConverter::data
 	cout << endl;
 }
 
-
 void ScalarConverter::print_float(std::string __unused &arg, ScalarConverter::data_type type) {
 
-	float f;
+	float f = {0};
 
 	cout << "float: ";
 
 	try {
+		if (!checkRange(arg, floating_point) && type != plus_infinite && type != neg_infinite) {
+			cout << "impossible";
+			goto end;
+		}
 		if (type == character)
 			f = static_cast<float>(arg.at(0));
 		else
@@ -126,11 +150,15 @@ void ScalarConverter::print_float(std::string __unused &arg, ScalarConverter::da
 
 void ScalarConverter::print_double(std::string __unused &arg, ScalarConverter::data_type __unused type) {
 
-	double d;
+	double d = {0};
 
 	cout << "double: ";
 
 	try {
+		if (!checkRange(arg, double_float) && type != plus_infinite && type != neg_infinite) {
+			cout << "impossible";
+			goto end;
+		}
 		if (type == character)
 			d = static_cast<double>(arg.at(0));
 		else
