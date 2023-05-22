@@ -1,4 +1,4 @@
-NAME		=	easyfind
+NAME		=	span
 NAME_SANI	=	$(addsuffix _sani, $(NAME))
 CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
