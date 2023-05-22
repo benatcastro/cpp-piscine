@@ -4,6 +4,12 @@
 #include <iostream>
 
 
+template <typename T>
+void print(T const &x)
+{
+	std::cout << x << std::endl;
+	return;
+}
 
 template <typename T>
 void	iter(T *array, std::size_t len, void (*f)(T &))

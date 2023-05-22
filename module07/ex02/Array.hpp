@@ -32,15 +32,16 @@ public:
 	Array &operator=(const Array &obj) {
 		std::cout << "operator= \n";
 
-		delete [] this->_array;
+		if (this->_array)
+			delete [] this->_array;
 		this->_array = new T[obj._len];
 
 		for (unsigned int i = 0; i < obj._len; i++)
 			this->_array[i] = obj._array[i];
+		return (*this);
 	}
 
 	T &operator[](std::size_t idx) {
-		// std::cout << "idx: " << idx << " len: " << _len << std::endl;
 		if (idx > this->_len)
 			throw (std::invalid_argument("Error accesing array, bad index"));
 		return (this->_array[idx]);
