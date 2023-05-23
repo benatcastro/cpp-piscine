@@ -107,5 +107,8 @@ int main(void)
 	cout << "Original assignment: " << original << endl;
 
 
+	cout << "\n\n****Leaks****\n\n";
+	system("leaks --quiet MutantStack");
+
 	return 0;
 }
