@@ -1,6 +1,7 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
+# include <vector>
 # include <iostream>
 # include <algorithm>
 
@@ -15,17 +16,20 @@ public:
 	Span &operator=(const Span &obj);
 	int &operator[](unsigned int idx);
 
-	unsigned int	size(void);
-	void			addNumber(int x);
-	int 			shortestSpan();
-	int 			longestSpan();
+	unsigned int				size(void);
+	void						addNumber(int x);
+	int 						shortestSpan(void);
+	int 						longestSpan(void);
+	void 						fill(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+	void 						fill(std::vector<int>::iterator begin, std::vector<int>::iterator end, unsigned int max);
+
+	std::vector<int>::iterator	begin(void);
+	std::vector<int>::iterator	end(void);
 
 
 private:
-	unsigned int	_maxElements;
-	unsigned int	_currentElements;
-	int				*_array;
-
+	unsigned int		_maxElements;
+	std::vector<int>	_vector;
 
 };
 
