@@ -1,13 +1,14 @@
 #include "easyfind.hpp"
 #include <iostream>
 #include <vector>
-#include <array>
 #include <set>
+#include <list>
 
 int main(void)
 {
 
 	{
+		std::cout << "\n\n****VECTOR TEST****\n\n";
 		int int_tab[] = {0, 1, 2, 3, 4, 5};
 		std::vector<int> int_vector(int_tab, int_tab + sizeof(int_tab) / sizeof(*int_tab));
 
@@ -19,21 +20,24 @@ int main(void)
 		}
 
 
-		std::array<int, 3> int_array;
+		std::cout << "\n\n****LIST TEST****\n\n";
 
-		int_array[0] = 0;
-		int_array[1] = 1;
-		int_array[2] = 2;
+		std::list<int> int_list;
+		int_list.push_back(1);
+		int_list.push_back(2);
+		int_list.push_back(3);
 
 		try {
-			std::cout << *easyfind(int_array, 2) << std::endl;
+			std::cout << *easyfind(int_list, 2) << std::endl;
 		}
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
 
+		std::cout << "\n\n****SET TEST****\n\n";
 
 		std::set<int> int_set;
+
 
 		for (int i = 0; i < 10; i++)
 			int_set.insert(i);
