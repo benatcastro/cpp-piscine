@@ -39,10 +39,10 @@ $(PCH_OUT): $(PCH_SRC)
 #	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 sani:
-	./$(NAME_SANI) input.txt;
+	./$(NAME_SANI) "8 9 * 9 - 9 - 9 - 4 - 1 +"
 
 run: all
-	./$(NAME) input.txt
+	./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
 
 re: fclean all
 

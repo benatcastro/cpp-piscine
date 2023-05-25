@@ -18,10 +18,13 @@ public:
 
 	RPN &operator=(RPN const &rhs);
 
-	void checkArg(char **argv);
-	void checkArg(char *argv);
+	void				checkArg(char **argv);
+	void				checkArg(char *argv);
 
+	static bool 		isSet(const string str, string const set);
 private:
+	void 				validateToken(const string token);
+	std::stack<int>		numbers;
 
 
 };
