@@ -11,6 +11,7 @@
 # define VALUE_TOKEN 1
 
 using std::cout;
+using std::cerr;
 using std::endl;
 using std::string;
 
@@ -24,17 +25,16 @@ public:
 
 	void	parseData(void);
 	void	parseInput(string inputFile);
-	void 	retrieveValue(string date);
-
+	void 	compare(string date, float n_btc);
 
 private:
 	void 	parseExtension(const string file);
 	string 	checkDate(const string date_str);
-	float 	checkValue(const string value_str);
+	float 	checkValue(const double value);
+	bool 	isFloat(const string str);
 
 private:
 	std::map<string, float> _data;
-	std::map<string, float> _input;
 
 private:
 	static const string data_file;

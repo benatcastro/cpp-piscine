@@ -7,6 +7,27 @@ Btc::Btc() { cout << "Btc constructed\n"; }
 
 Btc::~Btc() { cout << "Btc destructed\n"; }
 
+Btc::Btc(const Btc &rhs) { this->_data = rhs._data; }
+
+Btc Btc::operator=(const Btc &rhs) { this->_data = rhs._data; }
+
+bool Btc::isFloat(const std::string str) {
+
+	char *end;
+
+	std::strtod(str.c_str(), &end);
+	if (end == str.c_str() || *end != '\0')
+		throw (std::range_error("invalid syntax"));
+	return true;
+}
+
+void Btc::compare(string date, float n_btc) {
+
+	std::map<string, float>::iterator lb = this->_data.lower_bound(date);
+	cout << date << " => " << n_btc << " = " << lb->second * n_btc << endl;
+
+}
+
 void Btc::parseExtension(const std::string file) {
 
 	const string extension(&file.at(file.find_last_of(".")));
@@ -17,24 +38,24 @@ void Btc::parseExtension(const std::string file) {
 
 string Btc::checkDate(const std::string date_str) {
 	struct tm time;
-	cout << "Checking date: " << date_str << endl;
+
 	if (!strptime(date_str.c_str(), "%Y-%m-%d", &time))
-		throw (std::invalid_argument("invalid date"));
+		throw (std::range_error("invalid date"));
 
 	if (time.tm_mday == 0)
-		throw (std::invalid_argument("invalid date"));
+		throw (std::range_error("invalid date"));
 	return date_str;
 }
 
-float Btc::checkValue(const std::string value_str) {
+float Btc::checkValue(const double value) {
 
-	const double d = std::atof(value_str.c_str());
-
-	if (d > std::numeric_limits<int>::max())
-		throw (std::invalid_argument("value exceeds max int"));
-	if (d < std::numeric_limits<int>::min())
+	if (value < 0)
+		throw (std::invalid_argument("not a positive number"));
+	if (value > static_cast<double>(std::numeric_limits<int>::max()))
+		 throw (std::invalid_argument("value exceeds max int"));
+	if (value < std::numeric_limits<int>::min())
 		throw (std::invalid_argument("value lower than min int"));
-	return d;
+	return value;
 
 }
 
@@ -53,7 +74,7 @@ void Btc::parseInput(string file) {
 
 	do {
 		u_int32_t	n_tokens = 0;
-		string 		date;
+		string 		date, s_value;
 		char 		*token;
 		float		value;
 
@@ -67,18 +88,36 @@ void Btc::parseInput(string file) {
 		token = std::strtok((char *)line.c_str(), delimiter.c_str());
 		do {
 			if (token && n_tokens == DATE_TOKEN)
-				date = checkDate(token);
+				date = token;
 			if (token && n_tokens == VALUE_TOKEN)
-				value = checkValue(token);
+			{
+				s_value = token;
+				value = std::atof(token);
+			}
 			n_tokens++;
 			token = std::strtok(NULL, delimiter.c_str());
 		}
 		while (token);
-
 		if (n_tokens != 2)
-			throw (std::invalid_argument("Syntax error"));
-
-		this->_input[date] = value;
+		{
+			cerr << "Error: bad input => " << line << endl;
+			continue;
+		}
+		try
+		{
+			checkDate(date);
+			isFloat(s_value);
+			checkValue(value);
+		}
+		catch (std::range_error &e)
+		{
+			cerr << "Error: bad input => " << line << endl;
+		}
+		catch (std::exception &e)
+		{
+			cerr << "Error: " << e.what() << endl;
+		}
+		Btc::compare(date, value);
 	} while (!inputFile.eof());
 
 	inputFile.close();
