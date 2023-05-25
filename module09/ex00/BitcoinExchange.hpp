@@ -10,6 +10,9 @@
 # define DATE_TOKEN 0
 # define VALUE_TOKEN 1
 
+# define MIN_VALUE 0
+# define MAX_VALUE 1000
+
 using std::cout;
 using std::cerr;
 using std::endl;

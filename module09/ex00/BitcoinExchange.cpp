@@ -51,10 +51,8 @@ float Btc::checkValue(const double value) {
 
 	if (value < 0)
 		throw (std::invalid_argument("not a positive number"));
-	if (value > static_cast<double>(std::numeric_limits<int>::max()))
-		 throw (std::invalid_argument("value exceeds max int"));
-	if (value < std::numeric_limits<int>::min())
-		throw (std::invalid_argument("value lower than min int"));
+	if (value > 1000)
+		 throw (std::invalid_argument("number is too big"));
 	return value;
 
 }
