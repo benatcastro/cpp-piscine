@@ -1,8 +1,8 @@
 NAME		=	btc
 NAME_SANI	=	$(addsuffix _sani, $(NAME))
-CXX			=	c++
+CXX			=	c++ -g3
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
-SANI_FLAG	=	-fsanitize=address -g3
+SANI_FLAG	=	 -fsanitize=address
 OBJDIR		=	objs/
 OBJDIR_SANI	=	objs_sani/
 PCHDIR		=	pch/
@@ -20,24 +20,17 @@ ECHO		=	echo
 
 #.SILENT:
 
-all: $(NAME) $(NAME_SANI)
-
-$(NAME_SANI): $(OBJS_SANI)
-	$(CXX) $(CXXFLAGS) $(SANI_FLAG) $(OBJS) -I $(PCHDIR) -o $(NAME_SANI)
-#	printf "$(B_RED)CREATING $(NC)$(B_WHT)%s$(NC)$(B_RED)SANI EXECUTABLE: $(B_WHT)$(NAME_SANI) $(NC)\n"
-
-$(OBJS_SANI): $(SRCS) $(PCH_OUT)
-	@$(MKDIR) $(OBJDIR_SANI)
-	$(CXX) $(CXXFLAGS) $(SANI_FLAG) -c -o $@ $<
-#	printf "$(B_RED)Sani Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -I $(PCHDIR) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) $(SANI_FLAG) -I $(PCHDIR) -o $(NAME)_sani
 #	printf "$(B_BLU)CREATING $(NC)$(B_WHT)%s$(NC)$(B_BLU)EXECUTABLE: $(B_WHT)$(NAME) $(NC)\n"
 
 $(OBJDIR)%.o: %.cpp $(PCH_OUT)
 	@$(MKDIR) $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) $(SANI_FLAG) -c -o $(@:.o=_sani.o) $<
 #	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 $(PCH_OUT): $(PCH_SRC)
@@ -45,11 +38,11 @@ $(PCH_OUT): $(PCH_SRC)
 	$(CXX) $(CXXFLAGS) -o $@ $<
 #	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
-sani: $(NAME_SANI)
-	./$(NAME_SANI)
+sani:
+	./$(NAME_SANI) input.txt;
 
 run: all
-	./$(NAME)
+	./$(NAME) input.txt
 
 re: fclean all
 

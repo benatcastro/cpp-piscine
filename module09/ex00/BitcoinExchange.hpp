@@ -3,6 +3,12 @@
 
 # include <iostream>
 # include <map>
+# include <fstream>
+# include <sstream>
+# include <limits>
+
+# define DATE_TOKEN 0
+# define VALUE_TOKEN 1
 
 using std::cout;
 using std::endl;
@@ -14,12 +20,24 @@ public:
 	Btc(Btc const &rhs);
 	~Btc();
 
-	void	parseInput(string const file);
 	Btc operator=(Btc const &rhs);
 
-private:
-	std::map<string, int> _data;
+	void	parseData(void);
+	void	parseInput(string inputFile);
+	void 	retrieveValue(string date);
 
+
+private:
+	void 	parseExtension(const string file);
+	string 	checkDate(const string date_str);
+	float 	checkValue(const string value_str);
+
+private:
+	std::map<string, float> _data;
+	std::map<string, float> _input;
+
+private:
+	static const string data_file;
 
 };
 
