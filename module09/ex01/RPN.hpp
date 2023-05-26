@@ -24,6 +24,7 @@ public:
 	static bool 		isSet(const string str, string const set);
 private:
 	void 				validateToken(const string token);
+	void 				calculate(char operation);
 	std::stack<int>		numbers;
 
 
