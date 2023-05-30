@@ -9,7 +9,7 @@ Btc::~Btc() { cout << "Btc destructed\n"; }
 
 Btc::Btc(const Btc &rhs) { this->_data = rhs._data; }
 
-Btc Btc::operator=(const Btc &rhs) { this->_data = rhs._data; }
+Btc Btc::operator=(const Btc &rhs) { this->_data = rhs._data; return *this; }
 
 bool Btc::isFloat(const std::string str) {
 
@@ -64,7 +64,6 @@ void Btc::parseInput(string file) {
 	const string delimiter = " |";
 
 
-	this->parseExtension(file);
 
 	inputFile.open(file);
 	if (!inputFile)
@@ -106,6 +105,7 @@ void Btc::parseInput(string file) {
 			checkDate(date);
 			isFloat(s_value);
 			checkValue(value);
+			Btc::compare(date, value);
 		}
 		catch (std::range_error &e)
 		{
@@ -115,7 +115,6 @@ void Btc::parseInput(string file) {
 		{
 			cerr << "Error: " << e.what() << endl;
 		}
-		Btc::compare(date, value);
 	} while (!inputFile.eof());
 
 	inputFile.close();
