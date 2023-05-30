@@ -39,10 +39,10 @@ $(PCH_OUT): $(PCH_SRC)
 #	printf "$(B_CYN)Compiling: $(NC)$(B_WHT)%s$(NC)\n" $(notdir $@)
 
 sani:
-	./$(NAME_SANI) input.txt;
+	./$(NAME_SANI) inputs/valid_input.txt;
 
 run: all
-	./$(NAME) input.txt
+	./$(NAME) inputs/valid_input.txt
 
 re: fclean all
 

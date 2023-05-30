@@ -5,6 +5,8 @@
 # include "string"
 # include <stack>
 
+# define VERBOSE 0
+
 using std::cout;
 using std::cerr;
 using std::endl;
@@ -20,7 +22,6 @@ public:
 
 	void				checkArg(char **argv);
 	void				checkArg(char *argv);
-
 	static bool 		isSet(const string str, string const set);
 private:
 	void 				validateToken(const string token);

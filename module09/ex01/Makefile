@@ -44,6 +44,22 @@ sani:
 run: all
 	./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
 
+test: all
+	./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+	@echo "Expected: 42"
+	./RPN "7 7 * 7 -"
+	@echo "Expected: 42"
+	./RPN "1 2 * 2 / 2 * 2 4 - +"
+	@echo "Expected: 0"
+	./RPN "(1 + 1)"
+	@echo "Expected: Error"
+	./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+	@echo "Expected: 42"
+	./RPN "9 8 * 4 * 4 / 2 + 9 - 8 - 8 - 1 - 6 -"
+	@echo "Expected: 42"
+	./RPN "1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 /"
+	@echo "Expected: 15"
+
 re: fclean all
 
 clean:

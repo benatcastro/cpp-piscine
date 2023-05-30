@@ -1,8 +1,14 @@
 #include "RPN.hpp"
 
-RPN::RPN() { cout << "RPN constructed\n"; }
+RPN::RPN() {
+	if (VERBOSE)
+		cout << "RPN constructed\n";
+}
 
-RPN::~RPN() { cout << "RPN destructed\n"; }
+RPN::~RPN() {
+	if (VERBOSE)
+		cout << "RPN destructed\n";
+}
 
 bool RPN::isSet(const std::string str, const std::string set) {
 	for (std::string::const_iterator it = str.begin(); it != str.end(); it++)
@@ -16,7 +22,6 @@ bool RPN::isSet(const std::string str, const std::string set) {
 void RPN::validateToken(const std::string token) {
 
 	const string valid_chars = "+-/*";
-//	cout << "token: " << token << endl;
 	if (token.at(0) == '-')
 	{
 		if (token.size() == 2 && !isdigit(token.at(1)))
@@ -32,36 +37,38 @@ void RPN::validateToken(const std::string token) {
 
 void RPN::calculate(char operation) {
 
-//	cout << "stack size: " << this->numbers.size() << endl;
-	if (this->numbers.size() > 3)
+	int x,y = {0};
+	if (this->numbers.size() > 3 || this->numbers.size() == 0)
 		throw (std::runtime_error("invalid operation"));
-	int x = this->numbers.top();
-	this->numbers.pop();
-	int y = this->numbers.top();
-	this->numbers.pop();
+	if (this->numbers.size())
+	{
+		x = this->numbers.top();
+		this->numbers.pop();
+	}
+	if (this->numbers.size())
+	{
+		y = this->numbers.top();
+		this->numbers.pop();
+	}
 	std::swap(x, y);
-//	cout << "stack size after: " << this->numbers.size() << endl;
-//	cout << "x: " << x << " y: " << y << endl;
 	switch (operation) {
 		case '+':
 			this->numbers.push(x + y);
 			break;
 		case '-':
 			this->numbers.push(x - y);
-//			cout << x - y << endl;
 			break;
 		case '*':
 			this->numbers.push(x * y);
-//			cout << x * y << endl;
 			break;
 		case '/':
+			if (y == 0)
+				throw (std::invalid_argument("can't divide by 0"));
 			this->numbers.push(x / y);
-//			cout << x / y << endl;
 			break;
 		default:
 			break;
 	}
-//	cout << "Top: " << this->numbers.top() << endl;
 }
 
 void RPN::checkArg(char *argv) {
@@ -76,7 +83,6 @@ void RPN::checkArg(char *argv) {
 
 	try {
 		do {
-//			cout << token << " ";
 			if (token)
 			{
 				validateToken(token);
@@ -90,7 +96,14 @@ void RPN::checkArg(char *argv) {
 			}
 			token = std::strtok(NULL, separation.c_str());
 		} while (token);
-		cout <<  "Result: " << this->numbers.top() << endl;
+		if (this->numbers.size() != 1)
+		{
+			cerr << "Error: invalid operation\n";
+		}
+		else
+		{
+			cout <<  "Result: " << this->numbers.top() << endl;
+		}
 	}
 	catch (std::exception &e)
 	{

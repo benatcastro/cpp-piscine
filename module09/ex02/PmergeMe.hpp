@@ -16,6 +16,15 @@ void parseInput(std::list<int> &input_list, int argc, char **argv);
 bool isValidInteger(string str);
 
 template <class Container>
+bool isSorted(Container container)
+{
+	for (typename Container::iterator it = container.begin() + 1; it != container.end(); it++)
+		if (*it < *(it - 1))
+			return false;
+	return true;
+}
+
+template <class Container>
 void InsertSort(Container &container)
 {
 	for (typename Container::iterator it = container.begin() + 1; it != container.end(); it++)
